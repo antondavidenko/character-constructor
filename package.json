@@ -1,0 +1,20 @@
+{
+  "name": "character-constructor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "start": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.116.1",
+    "ts-loader": "4.4.2",
+    "typescript": "2.9.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
