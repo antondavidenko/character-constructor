@@ -1,8 +1,10 @@
 import { loadFBX } from '../utils/loadFBX';
-import { setTextureByImage } from '../utils/setTextureByImage';
+import { setTextureByImage, setTextureByImagesList } from '../utils/setTextureByImage';
 import { CharacterConfig } from '../data/CharacterConfig';
 import { defaultCharackterConfig } from '../data/DefaultCharackterConfig';
 import { carryItemsMaterial, CarryItemsFBX } from '../data/CarryItems';
+import { setScaleByVector3 } from './../utils/helpers';
+import { BodiesCollection, FaceTextureX, FaceTextureY } from '../data/Body';
 
 const headSlot = "Dummy_Prop_Head";
 const leftHandSlot = "Dummy_Prop_Left";
@@ -21,21 +23,18 @@ const mainId = "RigPelvis";
 export class Character {
 
     private main: THREE.Group;
-    private headRef: THREE.Object3D;
+    private head: THREE.Object3D;
 
-    constructor (private scene:THREE.Scene, private config: CharacterConfig = defaultCharackterConfig) {
+    constructor(private scene: THREE.Scene, private config: CharacterConfig = defaultCharackterConfig) {
         this.initMain();
     }
 
     private async initMain() {
         this.main = await loadFBX("models/BaseNormal.FBX");
-        this.main.scale.set(.01, .015, .01);
-        //this.main.scale.set(.01, .01, .01);
-        this.setupBodyTexture(this.config.bodyTexture);
-        let head = this.main.getObjectByName(headId);
-        head.scale.set(.6, .5, .7);
-        head.position.x -= 12;
+        this.head = this.main.getObjectByName(headId);
 
+        this.setupBodyType();
+        this.setupBodyTexture();
         this.setupHeadSlot(this.config.hairFBX, this.config.hairColor);
         this.setupCarryItemSlot("rightHandSlot", this.config.rightHandSlot);
         this.setupCarryItemSlot("leftHandSlot", this.config.leftHandSlot);
@@ -44,22 +43,34 @@ export class Character {
         this.scene.add(this.main);
     }
 
-    update() {
-        if (this.main) {
-            this.main.rotation.y += .01;
-        }
+    update() {}
+
+    setupRotation(rotation:number) {
+        this.main.rotation.y = rotation;
     }
 
-    async setupHeadSlot(modelFileFBX:string, color:number = 0xffffff) {
+    setupBodyType() {
+        setScaleByVector3(this.main, BodiesCollection[this.config.bodyTypeId].main);
+        setScaleByVector3(this.head, BodiesCollection[this.config.bodyTypeId].head);
+        this.head.position.x = BodiesCollection[this.config.bodyTypeId].headOffset;
+    }
+
+    async setupHeadSlot(modelFileFBX: string, color: number = 0xffffff) {
         let fileFBX = modelFileFBX === null ? null : `models/hair/${modelFileFBX}.FBX`;
         this.setupSlot.call(this, headSlot, fileFBX, null, color);
         this.config.hairFBX = modelFileFBX;
         this.config.hairColor = color;
     }
 
-    async setupBodyTexture(bodyTexture:string) {
-        setTextureByImage(this.main.getObjectByName("Base"), `body/${this.config.bodyTexture}`);
-        this.config.bodyTexture = bodyTexture;
+    async setupBodyTexture() {
+        setTextureByImagesList(
+            this.main.getObjectByName("Base"),
+            [
+                {file: this.config.clothesTexture}, 
+                {file: this.config.faceTexture, x: FaceTextureX, y: FaceTextureY}
+            ], 
+            this.config.skinColor,
+        );
     }
 
     setupCarryItemSlot(slotId: string, carryItemsFBX: CarryItemsFBX) {
@@ -72,8 +83,8 @@ export class Character {
         this.config[slotId] = carryItemsFBX;
     }
 
-    private async setupSlot(slotId:string, fileFBX:string, textureFile:string, color:number = 0xffffff) {
-        let item:THREE.Group;
+    private async setupSlot(slotId: string, fileFBX: string, textureFile: string, color: number = 0xffffff) {
+        let item: THREE.Group;
         if (this.main.getObjectByName(slotId).children.length > 0) {
             let toRemove = this.main.getObjectByName(slotId).children[0];
             this.main.getObjectByName(slotId).remove(toRemove);
@@ -85,15 +96,9 @@ export class Character {
         if (textureFile && fileFBX) {
             setTextureByImage(item.children[0], textureFile);
         }
-        if ( color !== 0xffffff && fileFBX) {
+        if (color !== 0xffffff && fileFBX) {
             (item.children[0] as any).material.color.setHex(color);
         }
-    }
-
-    private checkGroup(object:any) {
-        object.traverse(function(child) {
-            console.log(`${(child as THREE.Mesh).type}   ${(child as THREE.Mesh).name}`);
-        });
     }
 
     getConfig(): CharacterConfig {

@@ -3,8 +3,11 @@ import { CarryItemsFBX } from "./CarryItems";
 export type CharacterConfig = { 
     hairFBX: string,
     hairColor: number,
-    bodyTexture: string,
+    faceTexture: string,
+    clothesTexture: string,
+    skinColor: string,
     leftHandSlot: CarryItemsFBX
     rightHandSlot: CarryItemsFBX,
     backSlot: CarryItemsFBX,
+    bodyTypeId: string,
 };

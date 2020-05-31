@@ -1,37 +1,43 @@
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module';
 import { Character } from './Character';
 import { HairColors, HairFBX } from '../data/Hair';
-import { BodyTextures } from '../data/Body';
+import { Clothes, Faces, SkinColors, BodiesCollectionId } from '../data/Body';
 import { CarryItemsFBX } from '../data/CarryItems';
+import { CharacterConfig } from './../data/CharacterConfig';
 
 export class UIControls {
 
-    private gui:GUI;
-    private obj:any;
+    private gui: GUI;
+    private characterConfig: CharacterConfig;
+    rotation: number = 0;
 
     constructor(private character: Character) {
-        this.obj = character.getConfig();
+        this.characterConfig = character.getConfig();
         this.gui = new GUI();
         this.addHair();
         this.addHairColor();
-        this.addBodyTexture();
+        this.addClothes();
+        this.addFaces();
+        this.addSkin();
+        this.addBodyType();
         this.setupCarryItemSlot("rightHandSlot");
         this.setupCarryItemSlot("leftHandSlot");
         this.setupCarryItemSlot("backSlot");
+        this.addRotation();
     }
 
     private addHair() {
-        this.gui.add(this.obj, 'hairFBX', {
-            HairMale01: HairFBX.HAIR1,
-            HairMale05: HairFBX.HAIR2,
-            HairMale09: HairFBX.HAIR3,
-            HairMale11: HairFBX.HAIR4,
-            Bold: "Bold",
+        this.gui.add(this.characterConfig, 'hairFBX', {
+            CASUAL: HairFBX.CASUAL,
+            LONG: HairFBX.LONG,
+            SPIKY: HairFBX.SPIKY,
+            UNDERCUT: HairFBX.UNDERCUT,
+            BOLD: "Bold",
         }).onChange(this.setupHair.bind(this));
     }
 
     private addHairColor() {
-        this.gui.add(this.obj, 'hairColor', {
+        this.gui.add(this.characterConfig, 'hairColor', {
             BLONDE: HairColors.BLONDE,
             BLACK: HairColors.BLACK,
             BROWN: HairColors.BROWN,
@@ -41,28 +47,61 @@ export class UIControls {
     }
 
     private setupHair(value) {
-        if (this.obj.hairFBX !== "Bold") {
-            this.character.setupHeadSlot(this.obj.hairFBX, this.obj.hairColor);
+        if (this.characterConfig.hairFBX !== "Bold") {
+            this.character.setupHeadSlot(this.characterConfig.hairFBX, this.characterConfig.hairColor);
         } else {
-            this.character.setupHeadSlot(null, this.obj.hairColor);
+            this.character.setupHeadSlot(null, this.characterConfig.hairColor);
         }
     }
 
-    private addBodyTexture() {
-        this.gui.add(this.obj, 'bodyTexture', {
-            DR_MANHATTAN: BodyTextures.DR_MANHATTAN,
-            ARCHER: BodyTextures.ARCHER,
-            BARBARIAN: BodyTextures.BARBARIAN,
-            CASUAL: BodyTextures.CASUAL,
-            CASUAL512: BodyTextures.CASUAL512,
-            CASUAL512FACE: BodyTextures.CASUAL512FACE,
-            CASUAL512DRESS: BodyTextures.CASUAL512DRESS,
-            KNIGHT: BodyTextures.KNIGHT,
+    private addClothes() {
+        this.gui.add(this.characterConfig, 'clothesTexture', {
+            DR_MANHATTAN: Clothes.DR_MANHATTAN,
+            ARCHER: Clothes.ARCHER,
+            BARBARIAN: Clothes.BARBARIAN,
+            BARBARIAN2: Clothes.BARBARIAN2,
+            CASUAL: Clothes.CASUAL,
+            MEDUSA: Clothes.MEDUSA,
+            VAMPIRRE: Clothes.VAMPIRRE,
+            WARLOCK: Clothes.WARLOCK,
+            WARLOCK2: Clothes.WARLOCK2,
+            KNIGHT: Clothes.KNIGHT,
         }).onChange(this.character.setupBodyTexture.bind(this.character));
     }
 
-    private setupCarryItemSlot(slotId:string) {
-        this.gui.add(this.obj, slotId, {
+    private addFaces() {
+        this.gui.add(this.characterConfig, 'faceTexture', {
+            DR_MANHATTAN: Faces.DR_MANHATTAN,
+            MEDUSA: Faces.MEDUSA,
+            CYCLOP: Faces.CYCLOP,
+            EVIL: Faces.EVIL,
+            POKER: Faces.POKER,
+            SMILE: Faces.SMILE,
+            VAMPIRE: Faces.VAMPIRE,
+            VAMPIRE2: Faces.VAMPIRE2,
+        }).onChange(this.character.setupBodyTexture.bind(this.character));
+    }
+
+    private addSkin() {
+        this.gui.add(this.characterConfig, 'skinColor', {
+            WHITE: SkinColors.WHITE,
+            TAN: SkinColors.TAN,
+            BLACK: SkinColors.BLACK,
+            GREEN: SkinColors.GREEN,
+            BLUE: SkinColors.BLUE,
+        }).onChange(this.character.setupBodyTexture.bind(this.character));
+    }
+
+    private addBodyType() {
+        this.gui.add(this.characterConfig, 'bodyTypeId', {
+            HOBBIT: BodiesCollectionId.HOBBIT,
+            HUMAN: BodiesCollectionId.HUMAN,
+            OGR: BodiesCollectionId.OGR,
+        }).onChange(this.character.setupBodyType.bind(this.character));
+    }
+
+    private setupCarryItemSlot(slotId: string) {
+        this.gui.add(this.characterConfig, slotId, {
             ARROW: CarryItemsFBX.ARROW,
             AXE: CarryItemsFBX.AXE,
             CLAW: CarryItemsFBX.CLAW,
@@ -74,9 +113,15 @@ export class UIControls {
             SHIELDLARGE: CarryItemsFBX.SHIELDLARGE,
             SWORD: CarryItemsFBX.SWORD,
             EMPTY: "EMPTY",
-        }).onChange( (value) => {
+        }).onChange((value) => {
             value = value === "EMPTY" ? null : value;
             this.character.setupCarryItemSlot(slotId, value);
+        });
+    }
+
+    private addRotation() {
+        this.gui.add(this, 'rotation', -1*Math.PI, 1*Math.PI).onChange((value) => {
+            this.character.setupRotation(value);
         });
     }
 

@@ -7,8 +7,8 @@ export enum HairColors {
 };
 
 export enum HairFBX {
-    HAIR1 = 'HairMale01',
-    HAIR2 = 'HairMale05',
-    HAIR3 = 'HairMale09',
-    HAIR4 = 'HairMale11',
+    CASUAL = 'HairMale01',
+    LONG = 'HairMale05',
+    SPIKY = 'HairMale09',
+    UNDERCUT = 'HairMale11',
 };
