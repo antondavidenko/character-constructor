@@ -4,7 +4,9 @@ import { CharacterConfig } from '../data/CharacterConfig';
 import { defaultCharackterConfig } from '../data/DefaultCharackterConfig';
 import { carryItemsMaterial, CarryItemsFBX } from '../data/CarryItems';
 import { setScaleByVector3 } from './../utils/helpers';
+import * as THREE from 'three';
 import { BodiesCollection, FaceTextureX, FaceTextureY } from '../data/Body';
+import { Animations } from './../data/Animations';
 
 const headSlot = "Dummy_Prop_Head";
 const leftHandSlot = "Dummy_Prop_Left";
@@ -24,6 +26,9 @@ export class Character {
 
     private main: THREE.Group;
     private head: THREE.Object3D;
+    private mixer: THREE.AnimationMixer;
+    private clock: THREE.Clock = new THREE.Clock();
+    private animationAction: THREE.AnimationAction;
 
     constructor(private scene: THREE.Scene, private config: CharacterConfig = defaultCharackterConfig) {
         this.initMain();
@@ -40,10 +45,31 @@ export class Character {
         this.setupCarryItemSlot("leftHandSlot", this.config.leftHandSlot);
         this.setupCarryItemSlot("backSlot", this.config.backSlot);
 
+        this.mixer = new THREE.AnimationMixer(this.main);
+        this.setAnimation(Animations.IDLE);
+
         this.scene.add(this.main);
     }
 
-    update() {}
+    private async setAnimation(fileId:string) {
+        let animation = await loadFBX(fileId + ".FBX");
+        this.animationAction = this.mixer.clipAction((animation as any).animations[0]);
+        this.animationAction.reset();
+        this.animationAction.play();
+    }
+
+    resetAnimation(fileId:string) {
+        this.animationAction.stop();
+        this.setAnimation(fileId);
+    }
+
+    update() {
+        if (this.mixer) {
+            this.mixer.update(this.clock.getDelta());
+            this.setupBodyType();
+            this.main.rotation.x = 0;
+        }
+    }
 
     setupRotation(rotation:number) {
         this.main.rotation.y = rotation;

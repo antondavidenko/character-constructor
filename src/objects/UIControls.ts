@@ -1,49 +1,43 @@
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module';
 import { Character } from './Character';
-import { HairColors, HairFBX } from '../data/Hair';
-import { Clothes, Faces, SkinColors, BodiesCollectionId } from '../data/Body';
-import { CarryItemsFBX } from '../data/CarryItems';
 import { CharacterConfig } from './../data/CharacterConfig';
+import { characterConfigOptions, CarryItemsOptions, AnimationsOptions } from './../data/UIOptions';
+import { Animations } from './../data/Animations';
 
 export class UIControls {
 
     private gui: GUI;
     private characterConfig: CharacterConfig;
-    rotation: number = 0;
+    private rotation: number = 0;
+    private animation: string = Animations.IDLE;
+    private showDebugAxis:boolean = true; 
 
-    constructor(private character: Character) {
+    constructor(private character: Character, private axesHelper: THREE.AxesHelper) {
         this.characterConfig = character.getConfig();
         this.gui = new GUI();
-        this.addHair();
-        this.addHairColor();
-        this.addClothes();
-        this.addFaces();
-        this.addSkin();
-        this.addBodyType();
-        this.setupCarryItemSlot("rightHandSlot");
-        this.setupCarryItemSlot("leftHandSlot");
-        this.setupCarryItemSlot("backSlot");
-        this.addRotation();
+
+        let head = this.gui.addFolder('HEAD');
+        this.addCharacterConfig(head, 'hairFBX').onChange(this.setupHair.bind(this));
+        this.addCharacterConfig(head, 'hairColor').onChange(this.setupHair.bind(this));
+        this.addCharacterConfig(head, 'faceTexture').onChange(this.character.setupBodyTexture.bind(this.character));
+
+        let body = this.gui.addFolder('BODY');
+        this.addCharacterConfig(body, 'clothesTexture').onChange(this.character.setupBodyTexture.bind(this.character));
+        this.addCharacterConfig(body, 'skinColor').onChange(this.character.setupBodyTexture.bind(this.character));
+        this.addCharacterConfig(body, 'bodyTypeId').onChange(this.character.setupBodyType.bind(this.character));
+
+        let slots = this.gui.addFolder('SLOTS');
+        this.setupCarryItemSlot(slots, "rightHandSlot");
+        this.setupCarryItemSlot(slots, "leftHandSlot");
+        this.setupCarryItemSlot(slots, "backSlot");
+
+        this.addRotation(this.gui);
+        this.addAnimations(this.gui);
+        this.addShowDebugAxis(this.gui);
     }
 
-    private addHair() {
-        this.gui.add(this.characterConfig, 'hairFBX', {
-            CASUAL: HairFBX.CASUAL,
-            LONG: HairFBX.LONG,
-            SPIKY: HairFBX.SPIKY,
-            UNDERCUT: HairFBX.UNDERCUT,
-            BOLD: "Bold",
-        }).onChange(this.setupHair.bind(this));
-    }
-
-    private addHairColor() {
-        this.gui.add(this.characterConfig, 'hairColor', {
-            BLONDE: HairColors.BLONDE,
-            BLACK: HairColors.BLACK,
-            BROWN: HairColors.BROWN,
-            RED: HairColors.RED,
-            SILVER: HairColors.SILVER,
-        }).onChange(this.setupHair.bind(this));
+    private addCharacterConfig(root, key) {
+        return root.add(this.characterConfig, key, characterConfigOptions[key]);
     }
 
     private setupHair(value) {
@@ -54,74 +48,28 @@ export class UIControls {
         }
     }
 
-    private addClothes() {
-        this.gui.add(this.characterConfig, 'clothesTexture', {
-            DR_MANHATTAN: Clothes.DR_MANHATTAN,
-            ARCHER: Clothes.ARCHER,
-            BARBARIAN: Clothes.BARBARIAN,
-            BARBARIAN2: Clothes.BARBARIAN2,
-            CASUAL: Clothes.CASUAL,
-            MEDUSA: Clothes.MEDUSA,
-            VAMPIRRE: Clothes.VAMPIRRE,
-            WARLOCK: Clothes.WARLOCK,
-            WARLOCK2: Clothes.WARLOCK2,
-            KNIGHT: Clothes.KNIGHT,
-        }).onChange(this.character.setupBodyTexture.bind(this.character));
-    }
-
-    private addFaces() {
-        this.gui.add(this.characterConfig, 'faceTexture', {
-            DR_MANHATTAN: Faces.DR_MANHATTAN,
-            MEDUSA: Faces.MEDUSA,
-            CYCLOP: Faces.CYCLOP,
-            EVIL: Faces.EVIL,
-            POKER: Faces.POKER,
-            SMILE: Faces.SMILE,
-            VAMPIRE: Faces.VAMPIRE,
-            VAMPIRE2: Faces.VAMPIRE2,
-        }).onChange(this.character.setupBodyTexture.bind(this.character));
-    }
-
-    private addSkin() {
-        this.gui.add(this.characterConfig, 'skinColor', {
-            WHITE: SkinColors.WHITE,
-            TAN: SkinColors.TAN,
-            BLACK: SkinColors.BLACK,
-            GREEN: SkinColors.GREEN,
-            BLUE: SkinColors.BLUE,
-        }).onChange(this.character.setupBodyTexture.bind(this.character));
-    }
-
-    private addBodyType() {
-        this.gui.add(this.characterConfig, 'bodyTypeId', {
-            HOBBIT: BodiesCollectionId.HOBBIT,
-            HUMAN: BodiesCollectionId.HUMAN,
-            OGR: BodiesCollectionId.OGR,
-        }).onChange(this.character.setupBodyType.bind(this.character));
-    }
-
-    private setupCarryItemSlot(slotId: string) {
-        this.gui.add(this.characterConfig, slotId, {
-            ARROW: CarryItemsFBX.ARROW,
-            AXE: CarryItemsFBX.AXE,
-            CLAW: CarryItemsFBX.CLAW,
-            DAGGER: CarryItemsFBX.DAGGER,
-            LONGBOW: CarryItemsFBX.LONGBOW,
-            QUIVER: CarryItemsFBX.QUIVER,
-            SACK: CarryItemsFBX.SACK,
-            SHIELDSMALL: CarryItemsFBX.SHIELDSMALL,
-            SHIELDLARGE: CarryItemsFBX.SHIELDLARGE,
-            SWORD: CarryItemsFBX.SWORD,
-            EMPTY: "EMPTY",
-        }).onChange((value) => {
+    private setupCarryItemSlot(root, slotId: string) {
+        root.add(this.characterConfig, slotId, CarryItemsOptions).onChange((value) => {
             value = value === "EMPTY" ? null : value;
             this.character.setupCarryItemSlot(slotId, value);
         });
     }
 
-    private addRotation() {
-        this.gui.add(this, 'rotation', -1*Math.PI, 1*Math.PI).onChange((value) => {
+    private addRotation(root) {
+        root.add(this, 'rotation', -1*Math.PI, 1*Math.PI).onChange((value) => {
             this.character.setupRotation(value);
+        });
+    }
+
+    private addAnimations(root) {
+        root.add(this, 'animation', AnimationsOptions).onChange((value) => {
+            this.character.resetAnimation(value);
+        });
+    }
+
+    private addShowDebugAxis(root) {
+        root.add(this, "showDebugAxis").onChange((value) => {
+            this.axesHelper.visible = value;
         });
     }
 

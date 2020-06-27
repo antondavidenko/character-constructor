@@ -7,6 +7,7 @@ import { getCamera } from './utils/getCamera';
 import { getRender } from './utils/getRender';
 import { getControls } from './utils/getControls';
 import { UIControls } from './objects/UIControls';
+import { Panorama } from './objects/Panorama';
 
 export class MainScreen {
 
@@ -16,6 +17,7 @@ export class MainScreen {
     private controls: OrbitControls;
     private character: Character;
     private stats: Stats;
+    private axesHelper: THREE.AxesHelper;
 
     constructor() {
         this.prepareScene();
@@ -26,9 +28,11 @@ export class MainScreen {
     private addSceneObjects() {
         this.stats = Stats();
         document.body.appendChild(this.stats.dom);
-        this.scene.add(new THREE.AxesHelper(5));
+        this.axesHelper = new THREE.AxesHelper(5);
+        this.scene.add(this.axesHelper);
         this.character = new Character(this.scene);
-        new UIControls(this.character);
+        new UIControls(this.character, this.axesHelper);
+        new Panorama(this.scene);
     }
 
     private prepareScene() {
