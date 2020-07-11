@@ -10,7 +10,7 @@ export class UIControls {
     private characterConfig: CharacterConfig;
     private rotation: number = 0;
     private animation: string = Animations.IDLE;
-    private showDebugAxis:boolean = true; 
+    private showDebugAxis:boolean = false; 
 
     constructor(private character: Character, private axesHelper: THREE.AxesHelper) {
         this.characterConfig = character.getConfig();

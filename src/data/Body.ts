@@ -43,24 +43,24 @@ export const FaceTextureY = 143;
 
 export const BodiesCollection = {
     HOBBIT: {
-        main: new THREE.Vector3(.01, .01, .01),
+        body: new THREE.Vector3(.01, .01, .01),
         head: new THREE.Vector3(1, 1, 1),
         headOffset: 41,
     },
     HUMAN: {
-        main: new THREE.Vector3(.01, .015, .01),
+        body: new THREE.Vector3(.01, .015, .01),
         head: new THREE.Vector3(.6, .5, .7),
         headOffset: 28,
     },
     OGR: {
-        main: new THREE.Vector3(.015, .018, .015),
+        body: new THREE.Vector3(.015, .018, .015),
         head: new THREE.Vector3(.5, .4, .6),
         headOffset: 24,
     }
 }
 
 export type BodyType = {
-    main: THREE.Vector3,
+    body: THREE.Vector3,
     head: THREE.Vector3,
     headOffset: number,
 }

@@ -33,6 +33,7 @@ export class MainScreen {
         this.character = new Character(this.scene);
         new UIControls(this.character, this.axesHelper);
         new Panorama(this.scene);
+        this.axesHelper.visible = false;
     }
 
     private prepareScene() {
