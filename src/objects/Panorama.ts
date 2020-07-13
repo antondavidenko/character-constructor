@@ -18,15 +18,17 @@ export class Panorama {
         const skyBox = new THREE.Mesh(geometry, materials);
         skyBox.geometry.scale(BOX_SCALE, BOX_SCALE, -BOX_SCALE);
         skyBox.position.y += BOX_OFFSET_Y;
+        skyBox.rotation.y = Math.PI;
         this.scene.add(skyBox);
     }
 
     private addGround() {
-        const geometry = new THREE.PlaneGeometry(1, 1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide });
+        const geometry = new THREE.PlaneBufferGeometry(1, 1, 1);
+        const material = new THREE.MeshStandardMaterial({ color: 0xffff00 });
         const plane = new THREE.Mesh(geometry, material);
+        plane.receiveShadow = true;
         plane.rotation.x = Math.PI / 2;
-        plane.geometry.scale(GROUND_SCALE, GROUND_SCALE, -GROUND_SCALE);
+        plane.scale.set(GROUND_SCALE, GROUND_SCALE, -GROUND_SCALE);
         setTextureByImage(plane, "panorama/ground.jpg");
         this.scene.add(plane);
     }

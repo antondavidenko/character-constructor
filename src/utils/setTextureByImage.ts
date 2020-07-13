@@ -9,9 +9,7 @@ export type canvasTestureItem = {
 export function setTextureByImage(object:any, filename:string) {
     const texture = new THREE.TextureLoader().load(`textures/${filename}.png`);
     texture.anisotropy = 32;
-    let material:THREE.MeshBasicMaterial = object.material;
-    material.map = texture;
-    material.color.set(0xffffff);
+    replaceMaterial(object, texture);
 }
 
 export async function setTextureByImagesList(object:any, filenames:canvasTestureItem[], color:string = "") {
@@ -22,9 +20,8 @@ export async function setTextureByImagesList(object:any, filenames:canvasTesture
     context.fillStyle = color;
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    let material:THREE.MeshBasicMaterial = object.material;
     let texture = new THREE.Texture(canvas);
-    material.map = texture;
+    replaceMaterial(object, texture);
 
     for (let i in filenames) {
         let image = await loadTextureImage(`textures/${filenames[i].file}.png`);
@@ -33,6 +30,16 @@ export async function setTextureByImagesList(object:any, filenames:canvasTesture
         context.drawImage( image, x, y );
         texture.needsUpdate = true;
     }
+}
+
+function replaceMaterial(object:any, texture: THREE.Texture) {
+    let material:THREE.MeshStandardMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+    material.map = texture;
+    material.skinning = true;
+    material.color.set(0xffffff);
+    object.castShadow = true;
+    object.receiveShadow = true;
+    object.material = material;
 }
 
 function loadTextureImage(utl:string):Promise<HTMLImageElement> {
