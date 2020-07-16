@@ -11,13 +11,13 @@ export const characterConfigOptions = {
         UNDERCUT: HairFBX.UNDERCUT,
         BOLD: "Bold",
     },
-    hairColor: {
-        BLONDE: HairColors.BLONDE,
-        BLACK: HairColors.BLACK,
-        BROWN: HairColors.BROWN,
-        RED: HairColors.RED,
-        SILVER: HairColors.SILVER,
-    },
+    hairColor: [
+        HairColors.BLONDE,
+        HairColors.BLACK,
+        HairColors.BROWN,
+        HairColors.RED,
+        HairColors.SILVER,
+    ],
     clothesTexture: {
         DR_MANHATTAN: Clothes.DR_MANHATTAN,
         ARCHER: Clothes.ARCHER,
@@ -40,13 +40,13 @@ export const characterConfigOptions = {
         VAMPIRE: Faces.VAMPIRE,
         VAMPIRE2: Faces.VAMPIRE2,
     },
-    skinColor: {
-        WHITE: SkinColors.WHITE,
-        TAN: SkinColors.TAN,
-        BLACK: SkinColors.BLACK,
-        GREEN: SkinColors.GREEN,
-        BLUE: SkinColors.BLUE,
-    },
+    skinColor: [
+        SkinColors.WHITE,
+        SkinColors.TAN,
+        SkinColors.BLACK,
+        SkinColors.GREEN,
+        SkinColors.BLUE,
+    ],
     bodyTypeId: {
         HOBBIT: BodiesCollectionId.HOBBIT,
         HUMAN: BodiesCollectionId.HUMAN,
@@ -55,17 +55,32 @@ export const characterConfigOptions = {
 }
 
 export const CarryItemsOptions = {
-    ARROW: CarryItemsFBX.ARROW,
-    AXE: CarryItemsFBX.AXE,
-    CLAW: CarryItemsFBX.CLAW,
-    DAGGER: CarryItemsFBX.DAGGER,
-    LONGBOW: CarryItemsFBX.LONGBOW,
-    QUIVER: CarryItemsFBX.QUIVER,
-    SACK: CarryItemsFBX.SACK,
-    SHIELDSMALL: CarryItemsFBX.SHIELDSMALL,
-    SHIELDLARGE: CarryItemsFBX.SHIELDLARGE,
-    SWORD: CarryItemsFBX.SWORD,
-    EMPTY: "EMPTY",
+    rightHandSlot: {
+        ARROW: CarryItemsFBX.ARROW,
+        AXE: CarryItemsFBX.AXE,
+        CLAW: CarryItemsFBX.CLAW,
+        DAGGER: CarryItemsFBX.DAGGER,
+        LONGBOW: CarryItemsFBX.LONGBOW,
+        SHIELDSMALL: CarryItemsFBX.SHIELDSMALL,
+        SHIELDLARGE: CarryItemsFBX.SHIELDLARGE,
+        SWORD: CarryItemsFBX.SWORD,
+        EMPTY: "EMPTY",
+    },
+    leftHandSlot: {
+        ARROW: CarryItemsFBX.ARROW,
+        AXE: CarryItemsFBX.AXE,
+        DAGGER: CarryItemsFBX.DAGGER,
+        LONGBOW: CarryItemsFBX.LONGBOW,
+        SHIELDSMALL: CarryItemsFBX.SHIELDSMALL,
+        SHIELDLARGE: CarryItemsFBX.SHIELDLARGE,
+        SWORD: CarryItemsFBX.SWORD,
+        EMPTY: "EMPTY",
+    },
+    backSlot: {
+        QUIVER: CarryItemsFBX.QUIVER,
+        SACK: CarryItemsFBX.SACK,
+        EMPTY: "EMPTY",
+    }
 }
 
 export const AnimationsOptions = {

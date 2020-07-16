@@ -1,8 +1,9 @@
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module';
 import { Character } from './Character';
-import { CharacterConfig } from './../data/CharacterConfig';
+import { CharacterConfig } from '../data/CharacterConfig';
 import { characterConfigOptions, CarryItemsOptions, AnimationsOptions } from './../data/UIOptions';
-import { Animations } from './../data/Animations';
+import { Animations } from '../data/Animations';
+import { selectToRadios } from '../lib/dat.gui.radio';
 
 export class UIControls {
 
@@ -18,12 +19,12 @@ export class UIControls {
 
         let head = this.gui.addFolder('HEAD');
         this.addCharacterConfig(head, 'hairFBX').onChange(this.setupHair.bind(this));
-        this.addCharacterConfig(head, 'hairColor').onChange(this.setupHair.bind(this));
+        this.addColorPicker(head, 'hairColor').onChange(this.setupHair.bind(this));
         this.addCharacterConfig(head, 'faceTexture').onChange(this.character.setupBodyTexture.bind(this.character));
 
         let body = this.gui.addFolder('BODY');
         this.addCharacterConfig(body, 'clothesTexture').onChange(this.character.setupBodyTexture.bind(this.character));
-        this.addCharacterConfig(body, 'skinColor').onChange(this.character.setupBodyTexture.bind(this.character));
+        this.addColorPicker(body, 'skinColor').onChange(this.character.setupBodyTexture.bind(this.character));
         this.addCharacterConfig(body, 'bodyTypeId').onChange(this.character.setupBodyType.bind(this.character));
 
         let slots = this.gui.addFolder('SLOTS');
@@ -34,6 +35,10 @@ export class UIControls {
         this.addRotation(this.gui);
         this.addAnimations(this.gui);
         this.addShowDebugAxis(this.gui);
+    }
+
+    private addColorPicker(root, key) {
+        return selectToRadios(root.add(this.characterConfig, key, characterConfigOptions[key]));
     }
 
     private addCharacterConfig(root, key) {
@@ -49,7 +54,7 @@ export class UIControls {
     }
 
     private setupCarryItemSlot(root, slotId: string) {
-        root.add(this.characterConfig, slotId, CarryItemsOptions).onChange((value) => {
+        root.add(this.characterConfig, slotId, CarryItemsOptions[slotId]).onChange((value) => {
             value = value === "EMPTY" ? null : value;
             this.character.setupCarryItemSlot(slotId, value);
         });
