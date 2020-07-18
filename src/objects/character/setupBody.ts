@@ -4,12 +4,18 @@ import { CharacterConfig } from '../../data/CharacterConfig';
 import { setScaleByVector3 } from '../../utils/helpers';
 import { BodiesCollection } from '../../data/Body';
 
+const CLOTHES_TEXTURE_FOLDER = 'body/clothes/';
+const FACES_TEXTURE_FOLDER = 'body/faces/';
+
 export async function setupBodyTexture(characterGroup: THREE.Group, config: CharacterConfig) {
     setTextureByImagesList(
         characterGroup.getObjectByName("Base"),
         [
-            {file: config.clothesTexture}, 
-            {file: config.faceTexture, x: FaceTextureX, y: FaceTextureY}
+            { file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture }, 
+            { file: FACES_TEXTURE_FOLDER + config.faceTexture, 
+              x: FaceTextureX, 
+              y: FaceTextureY,
+            }
         ], 
         config.skinColor,
     );

@@ -1,36 +1,36 @@
 import * as THREE from 'three';
 
-export enum Clothes {
-    DR_MANHATTAN = 'body/clothes/manhattan',
-    ARCHER = 'body/clothes/archer',
-    BARBARIAN = 'body/clothes/barbarian',
-    BARBARIAN2 = 'body/clothes/barbarian2',
-    CASUAL = 'body/clothes/casual',
-    MEDUSA = 'body/clothes/medusa',
-    VAMPIRRE = 'body/clothes/vampirre',
-    WARLOCK = 'body/clothes/warlock',
-    WARLOCK2 = 'body/clothes/warlock2',
-    KNIGHT = 'body/clothes/knight',
-};
+export const Clothes = [
+    'manhattan',
+    'archer',
+    'barbarian',
+    'barbarian2',
+    'casual',
+    'medusa',
+    'vampirre',
+    'warlock',
+    'warlock2',
+    'knight',
+];
 
-export enum SkinColors {
-    WHITE = "#e9ae78",
-    TAN = "#a2642d",
-    BLACK = "#6a401a",
-    GREEN = "#8b9826",
-    BLUE = "#474463",
-};
+export const SkinColors = [
+    "#e9ae78",
+    "#a2642d",
+    "#6a401a",
+    "#8b9826",
+    "#474463",
+];
 
-export enum Faces {
-    DR_MANHATTAN = 'body/faces/manhattan',
-    CYCLOP = 'body/faces/cyclop',
-    EVIL = 'body/faces/evil',
-    MEDUSA = 'body/faces/medusa',
-    POKER = 'body/faces/poker',
-    SMILE = 'body/faces/smile',
-    VAMPIRE = 'body/faces/vampire',
-    VAMPIRE2 = 'body/faces/vampire2',
-};
+export const Faces = [
+    'manhattan',
+    'cyclop',
+    'evil',
+    'medusa',
+    'poker',
+    'smile',
+    'vampire',
+    'vampire2',
+];
 
 export enum BodiesCollectionId {
     HOBBIT = 'HOBBIT',

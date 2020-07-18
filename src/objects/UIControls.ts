@@ -10,7 +10,7 @@ export class UIControls {
     private gui: GUI;
     private characterConfig: CharacterConfig;
     private rotation: number = 0;
-    private animation: string = Animations.IDLE;
+    private animation: string = Animations[2];
     private showDebugAxis:boolean = false; 
 
     constructor(private character: Character, private axesHelper: THREE.AxesHelper) {
@@ -23,9 +23,11 @@ export class UIControls {
         this.addCharacterConfig(head, 'faceTexture').onChange(this.character.setupBodyTexture.bind(this.character));
 
         let body = this.gui.addFolder('BODY');
-        this.addCharacterConfig(body, 'clothesTexture').onChange(this.character.setupBodyTexture.bind(this.character));
-        this.addColorPicker(body, 'skinColor').onChange(this.character.setupBodyTexture.bind(this.character));
         this.addCharacterConfig(body, 'bodyTypeId').onChange(this.character.setupBodyType.bind(this.character));
+        this.addColorPicker(body, 'skinColor').onChange(this.character.setupBodyTexture.bind(this.character));
+
+        let clothes = this.gui.addFolder('CLOTHES');
+        this.addCharacterConfig(clothes, 'clothesTexture').onChange(this.character.setupBodyTexture.bind(this.character));
 
         let slots = this.gui.addFolder('SLOTS');
         this.setupCarryItemSlot(slots, "rightHandSlot");

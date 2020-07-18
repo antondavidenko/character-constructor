@@ -1,10 +1,10 @@
-export enum HairColors {
-    BLONDE = 0xeace56,
-    BLACK = 0x000000,
-    BROWN = 0x32261d,
-    RED = 0xff0000,
-    SILVER = 0xc0c0c0,
-};
+export const HairColors = [
+    0xeace56,
+    0x000000,
+    0x32261d,
+    0xff0000,
+    0xc0c0c0,
+];
 
 export enum HairFBX {
     CASUAL = 'HairMale01',

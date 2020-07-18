@@ -11,42 +11,10 @@ export const characterConfigOptions = {
         UNDERCUT: HairFBX.UNDERCUT,
         BOLD: "Bold",
     },
-    hairColor: [
-        HairColors.BLONDE,
-        HairColors.BLACK,
-        HairColors.BROWN,
-        HairColors.RED,
-        HairColors.SILVER,
-    ],
-    clothesTexture: {
-        DR_MANHATTAN: Clothes.DR_MANHATTAN,
-        ARCHER: Clothes.ARCHER,
-        BARBARIAN: Clothes.BARBARIAN,
-        BARBARIAN2: Clothes.BARBARIAN2,
-        CASUAL: Clothes.CASUAL,
-        MEDUSA: Clothes.MEDUSA,
-        VAMPIRRE: Clothes.VAMPIRRE,
-        WARLOCK: Clothes.WARLOCK,
-        WARLOCK2: Clothes.WARLOCK2,
-        KNIGHT: Clothes.KNIGHT,
-    },
-    faceTexture: {
-        DR_MANHATTAN: Faces.DR_MANHATTAN,
-        MEDUSA: Faces.MEDUSA,
-        CYCLOP: Faces.CYCLOP,
-        EVIL: Faces.EVIL,
-        POKER: Faces.POKER,
-        SMILE: Faces.SMILE,
-        VAMPIRE: Faces.VAMPIRE,
-        VAMPIRE2: Faces.VAMPIRE2,
-    },
-    skinColor: [
-        SkinColors.WHITE,
-        SkinColors.TAN,
-        SkinColors.BLACK,
-        SkinColors.GREEN,
-        SkinColors.BLUE,
-    ],
+    hairColor: HairColors,
+    clothesTexture: Clothes,
+    faceTexture: Faces,
+    skinColor: SkinColors,
     bodyTypeId: {
         HOBBIT: BodiesCollectionId.HOBBIT,
         HUMAN: BodiesCollectionId.HUMAN,
@@ -83,9 +51,4 @@ export const CarryItemsOptions = {
     }
 }
 
-export const AnimationsOptions = {
-    CHOP: Animations.CHOP,
-    DASH: Animations.DASH,
-    IDLE: Animations.IDLE,
-    JUMP: Animations.JUMP,
-}
+export const AnimationsOptions = Animations;
