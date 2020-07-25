@@ -1,5 +1,5 @@
 import { HairFBX, HairColors } from "./Hair";
-import { Clothes, Faces, SkinColors, BodiesCollectionId } from './Body';
+import { Clothes, Eyes, Mouth, SkinColors, BodiesCollectionId, ClothesPalette } from './Body';
 import { CarryItemsFBX } from '../data/CarryItems';
 import { Animations } from './Animations';
 
@@ -13,7 +13,10 @@ export const characterConfigOptions = {
     },
     hairColor: HairColors,
     clothesTexture: Clothes,
-    faceTexture: Faces,
+    clothesColor1: ClothesPalette,
+    clothesColor2: ClothesPalette,
+    eyesTexture: Eyes,
+    mouthTexture: Mouth,
     skinColor: SkinColors,
     bodyTypeId: {
         HOBBIT: BodiesCollectionId.HOBBIT,

@@ -1,6 +1,6 @@
 import { CharacterConfig } from "./CharacterConfig";
 import { HairFBX, HairColors } from "./Hair";
-import { Clothes, SkinColors, Faces, BodiesCollectionId } from "./Body";
+import { Clothes, SkinColors, Eyes, Mouth, BodiesCollectionId, ClothesPalette } from "./Body";
 import { CarryItemsFBX } from "./CarryItems";
 
 export const defaultCharackterConfig:CharacterConfig = {
@@ -8,7 +8,10 @@ export const defaultCharackterConfig:CharacterConfig = {
     hairColor: HairColors[2],
     clothesTexture: Clothes[4],
     skinColor: SkinColors[2],
-    faceTexture: Faces[4],
+    eyesTexture: Eyes[17],
+    mouthTexture: Mouth[0],
+    clothesColor1: ClothesPalette[0],
+    clothesColor2: ClothesPalette[1],
     leftHandSlot: CarryItemsFBX.SHIELDSMALL,
     rightHandSlot: CarryItemsFBX.DAGGER,
     backSlot: CarryItemsFBX.SACK,

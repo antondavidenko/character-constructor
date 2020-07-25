@@ -1,9 +1,10 @@
 import * as THREE from 'three';
 
-export type canvasTestureItem = {
+export type CanvasTestureItem = {
     file: string,
     x?: number,
     y?: number,
+    colorMask?: string,
 }
 
 export function setTextureByImage(object:any, filename:string) {
@@ -12,7 +13,7 @@ export function setTextureByImage(object:any, filename:string) {
     replaceMaterial(object, texture);
 }
 
-export async function setTextureByImagesList(object:any, filenames:canvasTestureItem[], color:string = "") {
+export async function setTextureByImagesList(object:any, canvasTesturesList: CanvasTestureItem[], color:string = "") {
     let canvas = document.createElement('canvas');
     let context = canvas.getContext('2d');
     let size = 512;
@@ -23,13 +24,17 @@ export async function setTextureByImagesList(object:any, filenames:canvasTesture
     let texture = new THREE.Texture(canvas);
     replaceMaterial(object, texture);
 
-    for (let i in filenames) {
-        let image = await loadTextureImage(`textures/${filenames[i].file}.png`);
-        let x = filenames[i].x || 0;
-        let y = filenames[i].y || 0;
-        context.drawImage( image, x, y );
+    canvasTesturesList.forEach(async (canvasTestureItem: CanvasTestureItem ) => {
+        let image = await loadTextureImage(`textures/${canvasTestureItem.file}.png`);
+        const x = canvasTestureItem.x || 0;
+        const y = canvasTestureItem.y || 0;
+        if (canvasTestureItem.colorMask) {
+            drawColorByMask(canvasTestureItem.colorMask, image, context);
+        } else {
+            context.drawImage(image, x, y);
+        }
         texture.needsUpdate = true;
-    }
+    })
 }
 
 function replaceMaterial(object:any, texture: THREE.Texture) {
@@ -49,4 +54,19 @@ function loadTextureImage(utl:string):Promise<HTMLImageElement> {
             resolve(image);
         });
     });
+}
+
+function drawColorByMask(color:string, mask: HTMLImageElement, context: CanvasRenderingContext2D) {
+    let canvasTmp = document.createElement('canvas');
+    let contextTmp = canvasTmp.getContext('2d');
+    let size = 512;
+    canvasTmp.width = canvasTmp.height = size;
+
+    contextTmp.globalCompositeOperation = 'copy';
+    contextTmp.drawImage(mask,0,0);
+    contextTmp.globalCompositeOperation = 'source-in';
+    contextTmp.fillStyle = color;
+    contextTmp.fillRect(0, 0, canvasTmp.width, canvasTmp.height);
+
+    context.drawImage(canvasTmp, 0, 0);
 }

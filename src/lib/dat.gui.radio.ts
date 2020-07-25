@@ -30,8 +30,8 @@ function colorLabel(label) {
   radio.nextSibling.remove();
   var span = document.createElement('span');
   span.style.background = gradient(urlToColors(radio.value));
-  span.style.paddingRight = '3.5em';
-  span.style.marginRight = '.5em';
+  span.style.paddingRight = '2em';
+  span.style.marginRight = '.25em';
   label.appendChild(span);
 }
 
@@ -42,7 +42,7 @@ export function selectToRadios(controller) {
   controller.__radios = Array.prototype.map.call(select.children, function(option, i) {
     var radio = document.createElement('input');
     radio.type = 'radio';
-    radio.name = option.name;
+    radio.name = controller.property;
     radio.value = option.value;
     radio.checked = option.selected;
     (radio as any).controller = controller;

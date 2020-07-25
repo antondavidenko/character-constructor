@@ -11,12 +11,28 @@ export async function setupBodyTexture(characterGroup: THREE.Group, config: Char
     setTextureByImagesList(
         characterGroup.getObjectByName("Base"),
         [
-            { file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture }, 
-            { file: FACES_TEXTURE_FOLDER + config.faceTexture, 
-              x: FaceTextureX, 
-              y: FaceTextureY,
-            }
-        ], 
+            { 
+                file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture
+            },
+            {
+                file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture + '/color1',
+                colorMask: config.clothesColor1 
+            },
+            {
+                file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture + '/color2',
+                colorMask: config.clothesColor2 
+            },
+            {
+                file: FACES_TEXTURE_FOLDER + config.mouthTexture,
+                x: FaceTextureX,
+                y: FaceTextureY,
+            },
+            {
+                file: FACES_TEXTURE_FOLDER + config.eyesTexture,
+                x: FaceTextureX,
+                y: FaceTextureY,
+            },
+        ],
         config.skinColor,
     );
 }

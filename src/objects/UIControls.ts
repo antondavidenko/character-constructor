@@ -20,7 +20,8 @@ export class UIControls {
         let head = this.gui.addFolder('HEAD');
         this.addCharacterConfig(head, 'hairFBX').onChange(this.setupHair.bind(this));
         this.addColorPicker(head, 'hairColor').onChange(this.setupHair.bind(this));
-        this.addCharacterConfig(head, 'faceTexture').onChange(this.character.setupBodyTexture.bind(this.character));
+        this.addCharacterConfig(head, 'eyesTexture').onChange(this.character.setupBodyTexture.bind(this.character));
+        this.addCharacterConfig(head, 'mouthTexture').onChange(this.character.setupBodyTexture.bind(this.character));
 
         let body = this.gui.addFolder('BODY');
         this.addCharacterConfig(body, 'bodyTypeId').onChange(this.character.setupBodyType.bind(this.character));
@@ -28,6 +29,8 @@ export class UIControls {
 
         let clothes = this.gui.addFolder('CLOTHES');
         this.addCharacterConfig(clothes, 'clothesTexture').onChange(this.character.setupBodyTexture.bind(this.character));
+        this.addColorPicker(clothes, 'clothesColor1').onChange(this.character.setupBodyTexture.bind(this.character));
+        this.addColorPicker(clothes, 'clothesColor2').onChange(this.character.setupBodyTexture.bind(this.character));
 
         let slots = this.gui.addFolder('SLOTS');
         this.setupCarryItemSlot(slots, "rightHandSlot");

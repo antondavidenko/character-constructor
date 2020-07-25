@@ -21,15 +21,57 @@ export const SkinColors = [
     "#474463",
 ];
 
-export const Faces = [
-    'manhattan',
-    'cyclop',
-    'evil',
-    'medusa',
-    'poker',
-    'smile',
-    'vampire',
-    'vampire2',
+export const ClothesPalette = [
+    "#55861d",
+    "#221c12",
+    "#393536",
+    "#002630",
+    "#119dc6",
+    "#0070cf",
+    '#858482',
+    '#975427',
+    '#ddd8d8',
+    '#a02d1f',
+    '#560076',
+    '#c2de9a',
+];
+
+export const Eyes = [
+    'eyes1',
+    'eyes2',
+    'eyes3',
+    'eyes4',
+    'eyes5',
+    'eyes6',
+    'eyes7',
+    'eyes8',
+    'eyes9',
+    'eyes10',
+    'eyes11',
+    'eyes12',
+    'eyes13',
+    'eyes14',
+    'eyes15',
+    'eyes16',
+    'eyes17',
+    'eyes18',
+    'none',
+];
+
+export const Mouth = [
+    'mouth1',
+    'mouth2',
+    'mouth3',
+    'mouth4',
+    'mouth5',
+    'mouth6',
+    'mouth7',
+    'mouth8',
+    'mouth9',
+    'mouth10',
+    'mouth11',
+    'mouth12',
+    'none',
 ];
 
 export enum BodiesCollectionId {
