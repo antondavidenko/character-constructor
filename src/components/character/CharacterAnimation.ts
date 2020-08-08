@@ -12,7 +12,7 @@ export class CharacterAnimation {
 
     async init(characterGroup: THREE.Group) {
         this.mixer = new THREE.AnimationMixer(characterGroup);
-        await this.setAnimation(Animations[2]);
+        await this.setAnimation(Animations[4]);
         this.animationAction.play();
     }
 
@@ -24,10 +24,9 @@ export class CharacterAnimation {
     async resetAnimation(fileId:string) {
         const lastAction = this.animationAction;
         await this.setAnimation(fileId);
-        // lastAction.stop();
-        lastAction.fadeOut(1)
+        lastAction.fadeOut(0.5)
         this.animationAction.reset();
-        this.animationAction.fadeIn(1)
+        this.animationAction.fadeIn(0.5)
         this.animationAction.play();
     }
 

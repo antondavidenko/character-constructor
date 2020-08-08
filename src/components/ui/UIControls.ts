@@ -22,7 +22,7 @@ export class UIControls {
     private gui: GUI;
     private characterConfig: CharacterConfig;
     private rotation: number = 0;
-    private animation: string = Animations[2];
+    private animation: string = Animations[4];
     private showDebugAxis:boolean = false;
 
     constructor(private character: Character, private axesHelper: THREE.AxesHelper) {
