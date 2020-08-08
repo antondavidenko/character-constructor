@@ -38,7 +38,7 @@ export async function setTextureByImagesList(object:any, canvasTesturesList: Can
 }
 
 function replaceMaterial(object:any, texture: THREE.Texture) {
-    let material:THREE.MeshStandardMaterial = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+    let material:THREE.MeshPhongMaterial = new THREE.MeshPhongMaterial({ color: 0xffff00 });
     material.map = texture;
     material.skinning = true;
     material.color.set(0xffffff);
