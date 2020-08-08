@@ -1,13 +1,13 @@
 import * as THREE from 'three';
 import Stats from 'three/examples/jsm/libs/stats.module';
-import { Illumination } from './objects/Illumination';
+import { Illumination } from './components/Illumination';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { Character } from './objects/Character';
+import { Character } from './components/Character';
 import { getCamera } from './utils/getCamera';
 import { getRender } from './utils/getRender';
 import { getControls } from './utils/getControls';
-import { UIControls } from './objects/UIControls';
-import { Panorama } from './objects/Panorama';
+import { UIControls } from './components/ui/UIControls';
+import { Panorama } from './components/Panorama';
 
 export class MainScreen {
 
