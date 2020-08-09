@@ -1,7 +1,7 @@
 import { filesListGenerator } from "../FilesListGenerator";
 
 const SwordsList = filesListGenerator('Sword', 10, true);
-const ShieldsList = filesListGenerator('Shield', 9, true);
+const ShieldsList = filesListGenerator('Shield', 10, true);
 const BackpackList = ['Sack01', 'Quiver01', 'none'];
 
 const RangedWeapons = filesListGenerator('Crossbow', 3)

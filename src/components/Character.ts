@@ -5,6 +5,7 @@ import { defaultCharackterConfig } from '../model/character/DefaultCharackterCon
 import { CharacterSlots } from './character/CharacterSlots';
 import { CharacterAnimation } from './character/CharacterAnimation';
 import { setupBodyTexture, setupBodyType } from './character/setupBody';
+import { getFPS } from '../utils/CounterFPS';
 
 const headId = "RigHead";
 const mainId = "RigPelvis";
@@ -48,6 +49,7 @@ export class Character {
     }
 
     update() {
+        console.log(getFPS());
         if (this.characterAnimation.update()) {
             this.setupBodyType();
             this.characterGroup.rotation.x = 0;

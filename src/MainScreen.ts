@@ -8,6 +8,7 @@ import { getRender } from './utils/getRender';
 import { getControls } from './utils/getControls';
 import { UIControls } from './components/ui/UIControls';
 import { Panorama } from './components/Panorama';
+import { updateFPS } from './utils/CounterFPS';
 
 export class MainScreen {
 
@@ -57,6 +58,7 @@ export class MainScreen {
     }
 
     private animate() {
+        updateFPS();
         requestAnimationFrame(this.animate.bind(this));
         this.controls.update();
         this.renderScreen();

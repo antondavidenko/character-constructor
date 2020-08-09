@@ -4,7 +4,7 @@ language: TypeScript
  
 framework: THREE JS
 
-Demo: http://antondavidenko.com/show/char_v4/
+Demo: http://antondavidenko.com/show/char_v5/
 
 
 # Setup

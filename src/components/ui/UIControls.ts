@@ -8,6 +8,7 @@ import { addHead } from './folders/head';
 import { addBody } from './folders/body';
 import { addClothes } from './folders/clothes';
 import { addSlots } from './folders/slots';
+import { addGeneral } from './folders/general';
 
 export class FolderContext {
     gui: GUI;
@@ -15,6 +16,11 @@ export class FolderContext {
     addCharacterConfig: (root, key, UIkey?) => any;
     addColorPicker: (root, key) => any;
     characterConfig: CharacterConfig;
+
+    axesHelper: THREE.AxesHelper;
+    rotation: number;
+    animation: string;
+    showDebugAxis:boolean;
 }
 
 export class UIControls {
@@ -35,16 +41,18 @@ export class UIControls {
             addCharacterConfig: this.addCharacterConfig.bind(this),
             addColorPicker: this.addColorPicker.bind(this),
             characterConfig: this.characterConfig,
+
+            axesHelper: axesHelper,
+            rotation: this.rotation,
+            animation: this.animation,
+            showDebugAxis: this.showDebugAxis,
         }
 
         addHead(context);
         addBody(context);
         addClothes(context);
         addSlots(context);
-
-        this.addRotation(this.gui);
-        this.addAnimations(this.gui);
-        this.addShowDebugAxis(this.gui);
+        addGeneral(context);
     }
 
     private addColorPicker(root, key) {
@@ -53,24 +61,6 @@ export class UIControls {
 
     private addCharacterConfig(root, key, UIkey = key) {
         return root.add(this.characterConfig, key, characterConfigOptions[UIkey]);
-    }
-
-    private addRotation(root) {
-        root.add(this, 'rotation', -1*Math.PI, 1*Math.PI).onChange((value) => {
-            this.character.setupRotation(value);
-        });
-    }
-
-    private addAnimations(root) {
-        root.add(this, 'animation', AnimationsOptions).onChange((value) => {
-            this.character.resetAnimation(value);
-        });
-    }
-
-    private addShowDebugAxis(root) {
-        root.add(this, "showDebugAxis").onChange((value) => {
-            this.axesHelper.visible = value;
-        });
     }
 
 }
