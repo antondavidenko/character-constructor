@@ -5,7 +5,7 @@ import { setScaleByVector3 } from '../../utils/helpers';
 import { BodiesCollection } from '../../model/character/Body';
 
 const CLOTHES_TEXTURE_FOLDER = 'body/clothes/';
-const FACES_TEXTURE_FOLDER = 'body/faces/';
+const FACES_TEXTURE_FOLDER = 'head/faces/';
 
 export async function setupBodyTexture(characterGroup: THREE.Group, config: CharacterConfig) {
     setTextureByImagesList(

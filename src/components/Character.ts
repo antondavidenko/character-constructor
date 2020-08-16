@@ -5,7 +5,6 @@ import { defaultCharackterConfig } from '../model/character/DefaultCharackterCon
 import { CharacterSlots } from './character/CharacterSlots';
 import { CharacterAnimation } from './character/CharacterAnimation';
 import { setupBodyTexture, setupBodyType } from './character/setupBody';
-import { getFPS } from '../utils/CounterFPS';
 
 const headId = "RigHead";
 const mainId = "RigPelvis";
@@ -40,7 +39,10 @@ export class Character {
 
         this.setupBodyType();
         this.setupBodyTexture();
-        this.setupHeadSlot(this.config.hairFBX, this.config.hairColor);
+        this.setupHair(this.config.hairFBX, this.config.hairColor);
+        this.setupHat(this.config.hatFBX);
+        this.headDecor1(this.config.headDecor1FBX);
+        this.headDecor2(this.config.headDecor2FBX);
         this.setupCarryItemSlot("rightHandSlot", this.config.rightHandSlot);
         this.setupCarryItemSlot("leftHandSlot", this.config.leftHandSlot);
         this.setupCarryItemSlot("backSlot", this.config.backSlot);
@@ -49,7 +51,6 @@ export class Character {
     }
 
     update() {
-        console.log(getFPS());
         if (this.characterAnimation.update()) {
             this.setupBodyType();
             this.characterGroup.rotation.x = 0;
@@ -64,8 +65,20 @@ export class Character {
         setupBodyType(this.characterGroup, this.head, this.config);
     }
 
-    async setupHeadSlot(modelFileFBX: string, color: number = 0xffffff) {
-        this.characterSlots.setupHeadSlot(modelFileFBX, color);
+    async setupHair(hairFBX: string, color: number = 0xffffff) {
+        this.characterSlots.setupHair(hairFBX, color);
+    }
+
+    setupHat(hatFBX: string) {
+        this.characterSlots.setupHat(hatFBX);
+    }
+
+    headDecor1(decorFBX: string) {
+        this.characterSlots.headDecor1(decorFBX);
+    }
+
+    headDecor2(decorFBX: string) {
+        this.characterSlots.headDecor2(decorFBX);
     }
 
     setupBodyTexture() {

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { setTextureByImage } from '../utils/setTextureByImage';
-import { TextureLoader } from 'three';
+import { getShaderMaterial } from '../utils/shaderMaterials/shaderMaterialLava';
 
 const BOX_SCALE = 500;
 const BOX_OFFSET_Y = 25;
@@ -38,6 +38,17 @@ export class Panorama {
         planeMaterial.displacementMap = displacementMap;
         planeMaterial.displacementScale = 0.1;
         plane.position.y = -2.5;
+        this.scene.add(plane);
+    }
+
+    private addLava() {
+        const geometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(1, 1, 1, 1)
+        const material = new THREE.MeshPhongMaterial({ color: 0xffff00 });
+        const plane = new THREE.Mesh(geometry, getShaderMaterial('LAVAL'));
+        plane.receiveShadow = true;
+        plane.rotation.x = Math.PI / 2;
+        plane.scale.set(GROUND_SCALE, GROUND_SCALE, -GROUND_SCALE);
+        plane.position.y = -0.2;
         this.scene.add(plane);
     }
 

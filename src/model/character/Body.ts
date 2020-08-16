@@ -37,10 +37,6 @@ export const ClothesPalette = [
     '#c2de9a',
 ];
 
-export const Eyes = filesListGenerator('eyes', 18, true);
-
-export const Mouth = filesListGenerator('mouth', 12, true);
-
 export const BaseModelList = ["BaseNormal", "BaseRobe01", "BaseRobe02"];
 
 export enum BodiesCollectionId {

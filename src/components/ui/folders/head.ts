@@ -1,7 +1,7 @@
 import { FolderContext } from "../UIControls";
 import { updateDatDropdown } from "../updateDatDropdown";
 import { HeadSlotsCategories } from "../../../model/ui/UIOptions";
-import { HairCategories, HairCollection } from "../../../model/character/Hair";
+import { HairCategories, HairCollection } from "../../../model/character/Head";
 
 let slotsCategories = {
     hair: HairCategories.MALE,
@@ -15,11 +15,17 @@ let slotsItemsId = {
     hair: HairCollection.get(HairCategories.MALE)[0],
 }
 
+let _context: FolderContext;
+
 export function addHead(context: FolderContext) {
     let head = context.gui.addFolder('HEAD');
+    _context = context;
 
     setupHeadSlotCategory(head, "hair", context);
     slotsControlsUI.hair = setupCarryItemSlot(head, "hair", context);
+    context.addCharacterConfig(head, 'hatFBX').onChange(context.character.setupHat.bind(context.character));
+    context.addCharacterConfig(head, 'headDecor1FBX').onChange(context.character.headDecor1.bind(context.character));
+    context.addCharacterConfig(head, 'headDecor2FBX').onChange(context.character.headDecor2.bind(context.character));
 
     context.addColorPicker(head, 'hairColor').onChange(setupHair.bind(context));
     context.addCharacterConfig(head, 'eyesTexture').onChange(context.character.setupBodyTexture.bind(context.character));
@@ -27,10 +33,10 @@ export function addHead(context: FolderContext) {
 }
 
 function setupHair() {
-    if (this.characterConfig.hairFBX !== "Bold") {
-        this.character.setupHeadSlot(this.characterConfig.hairFBX, this.characterConfig.hairColor);
+    if (_context.characterConfig.hairFBX !== "Bold") {
+        _context.character.setupHair(_context.characterConfig.hairFBX, _context.characterConfig.hairColor);
     } else {
-        this.character.setupHeadSlot(null, this.characterConfig.hairColor);
+        _context.character.setupHair(null, _context.characterConfig.hairColor);
     }
 }
 

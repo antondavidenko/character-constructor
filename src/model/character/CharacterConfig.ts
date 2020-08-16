@@ -1,6 +1,9 @@
 export type CharacterConfig = {
     baseFBX: string,
     hairFBX: string,
+    hatFBX: string,
+    headDecor1FBX: string,
+    headDecor2FBX: string,
     hairColor: number,
     eyesTexture: string,
     mouthTexture: string,

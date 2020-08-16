@@ -8,7 +8,8 @@ import { getRender } from './utils/getRender';
 import { getControls } from './utils/getControls';
 import { UIControls } from './components/ui/UIControls';
 import { Panorama } from './components/Panorama';
-import { updateFPS } from './utils/CounterFPS';
+import { updateFPS } from './utils/counterFPS';
+import { updateShaderMaterial } from './utils/shaderMaterials/shaderMaterialLava';
 
 export class MainScreen {
 
@@ -41,7 +42,7 @@ export class MainScreen {
         this.scene = new THREE.Scene();
         new Illumination(this.scene);
         this.camera = getCamera();
-        this.renderer = getRender();
+        this.renderer = getRender(this.scene, this.camera);
         this.controls = getControls(this.camera, this.renderer);
         window.addEventListener('resize', this.onWindowResize.bind(this), false);
     }
@@ -64,6 +65,7 @@ export class MainScreen {
         this.renderScreen();
         this.stats.update();
         this.character.update();
+        updateShaderMaterial();
     }
 
 }

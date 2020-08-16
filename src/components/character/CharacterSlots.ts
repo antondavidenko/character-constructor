@@ -30,11 +30,55 @@ export class CharacterSlots {
         this.characterGroup = characterGroup;
     }
 
-    async setupHeadSlot(modelFileFBX: string, color: number = 0xffffff) {
-        let fileFBX = modelFileFBX === null ? null : `models/hair/${modelFileFBX}.FBX`;
-        this.setupSlot.call(this, headSlot, fileFBX, null, color);
-        this.config.hairFBX = modelFileFBX;
+    setupHair(hairFBX: string, color: number = 0xffffff) {
+        this.config.hairFBX = hairFBX;
         this.config.hairColor = color;
+        this.updateHead();
+    }
+
+    setupHat(hatFBX: string) {
+        this.config.hatFBX = hatFBX === 'none' ? null : hatFBX;
+        this.updateHead();
+    }
+
+    headDecor1(decorFBX: string) {
+        this.config.headDecor1FBX = decorFBX === 'none' ? null : decorFBX;
+        this.updateHead();
+    }
+
+    headDecor2(decorFBX: string) {
+        this.config.headDecor2FBX = decorFBX === 'none' ? null : decorFBX;
+        this.updateHead();
+    }
+
+    private updateHead() {
+        this.clearSlot(headSlot);
+        this.updateHat();
+        this.updateHair();
+        this.updateDecor(this.config.headDecor1FBX);
+        this.updateDecor(this.config.headDecor2FBX);
+    }
+
+    private updateDecor(decorFBX: string) {
+        const fileDecorFBX = decorFBX ? `models/head/decor/${decorFBX}.FBX` : decorFBX;
+        const textureFile = decorFBX ? `head/decor/${decorFBX}` : decorFBX;
+        const colorHairFBX = 0xffffff;
+        this.setupSlot(headSlot, fileDecorFBX, textureFile, colorHairFBX);
+    }
+
+    private updateHat() {
+        const { hatFBX } = this.config;
+        const fileHatFBX = hatFBX ? `models/head/hats/${hatFBX}.FBX` : hatFBX;
+        const textureFile = hatFBX ? `head/hats/${hatFBX}` : hatFBX;
+        const colorHairFBX = 0xffffff;
+        this.setupSlot(headSlot, fileHatFBX, textureFile, colorHairFBX);
+    }
+
+    private updateHair() {
+        const { hairFBX } = this.config;
+        const { hairColor } = this.config;
+        const fileHairFBX = hairFBX === null ? null : `models/head/hair/${hairFBX}.FBX`;
+        this.setupSlot(headSlot, fileHairFBX, null, hairColor);
     }
 
     setupCarryItemSlot(slotId: string, carryItemsFBX: string) {
@@ -42,16 +86,13 @@ export class CharacterSlots {
         const fileFBX = carryItemsFBX ? `models/carryitems/${carryItemsFBX}.FBX` : carryItemsFBX;
         const textureFile = carryItemsFBX ? `carryitems/${carryItemsFBX}` : carryItemsFBX;
         const color = 0xffffff;
+        this.clearSlot(slotFBX);
         this.setupSlot(slotFBX, fileFBX, textureFile, color);
         this.config[slotId] = carryItemsFBX;
     }
 
     private async setupSlot(slotId: string, fileFBX: string, textureFile: string, color: number = 0xffffff) {
         let item: THREE.Group;
-        if (this.characterGroup.getObjectByName(slotId).children.length > 0) {
-            const toRemove = this.characterGroup.getObjectByName(slotId).children[0];
-            this.characterGroup.getObjectByName(slotId).remove(toRemove);
-        }
         if (fileFBX) {
             item = await loadFBX(fileFBX);
             this.fixRotationOnDemand(slotId, item, fileFBX)
@@ -62,6 +103,13 @@ export class CharacterSlots {
         }
         if (color !== 0xffffff && fileFBX) {
             (item.children[0] as any).material.color.setHex(color);
+        }
+    }
+
+    private clearSlot(slotId: string): void {
+        for (let i = 0; i < this.characterGroup.getObjectByName(slotId).children.length;) {
+            const toRemove = this.characterGroup.getObjectByName(slotId).children[0];
+            this.characterGroup.getObjectByName(slotId).remove(toRemove);
         }
     }
 
