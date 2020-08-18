@@ -1,8 +1,8 @@
-import { FolderContext } from "../UIControls";
-import { CarryItemsCategories, CarryItemsCollection } from "../../../model/character/CarryItems";
-import { SlotsCategories } from "../../../model/ui/UIOptions";
-import { updateDatDropdown } from "../updateDatDropdown";
-import { Character } from "../../../components/Character";
+import { FolderContext } from "../UIControlsComponent";
+import { CarryItemsCategories, CarryItemsCollection } from "../../character/model/CarryItems";
+import { SlotsCategories } from "../model/UIOptions";
+import { updateDatDropdown } from "../utils/updateDatDropdown";
+import { Character } from "../../character/CharacterComponent";
 
 let slotsCategories = {
     rightHandSlot: CarryItemsCategories.SWORDS,

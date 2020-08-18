@@ -1,10 +1,10 @@
 import * as THREE from 'three';
-import { loadFBX } from '../utils/loadFBX';
-import { CharacterConfig } from '../model/character/CharacterConfig';
-import { defaultCharackterConfig } from '../model/character/DefaultCharackterConfig';
-import { CharacterSlots } from './character/CharacterSlots';
-import { CharacterAnimation } from './character/CharacterAnimation';
-import { setupBodyTexture, setupBodyType } from './character/setupBody';
+import { loadFBX } from '../../utils/loadFBX';
+import { CharacterConfig } from './model/CharacterConfig';
+import { defaultCharackterConfig } from './model/DefaultCharackterConfig';
+import { CharacterSlots } from './controls/CharacterSlots';
+import { CharacterAnimation } from './controls/CharacterAnimation';
+import { setupBodyTexture, setupBodyType } from './utils/setupBody';
 
 const headId = "RigHead";
 const mainId = "RigPelvis";

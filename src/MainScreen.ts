@@ -1,13 +1,13 @@
 import * as THREE from 'three';
 import Stats from 'three/examples/jsm/libs/stats.module';
-import { Illumination } from './components/Illumination';
+import { Illumination } from './utils/Illumination';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { Character } from './components/Character';
+import { Character } from './components/character/CharacterComponent';
 import { getCamera } from './utils/getCamera';
 import { getRender } from './utils/getRender';
 import { getControls } from './utils/getControls';
-import { UIControls } from './components/ui/UIControls';
-import { Panorama } from './components/Panorama';
+import { UIControls } from './components/ui/UIControlsComponent';
+import { Panorama } from './components/PanoramaComponent';
 import { updateFPS } from './utils/counterFPS';
 import { updateShaderMaterial } from './utils/shaderMaterials/shaderMaterialLava';
 

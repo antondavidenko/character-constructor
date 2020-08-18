@@ -1,6 +1,6 @@
-import { CharacterConfig } from "../../model/character/CharacterConfig";
-import { loadFBX } from "../../utils/loadFBX";
-import { setTextureByImage } from "../../utils/setTextureByImage";
+import { CharacterConfig } from "../model/CharacterConfig";
+import { loadFBX } from "../../../utils/loadFBX";
+import { setTextureByImage } from "../../../utils/setTextureByImage";
 
 const headSlot = "Dummy_Prop_Head";
 const leftHandSlot = "Dummy_Prop_Left";

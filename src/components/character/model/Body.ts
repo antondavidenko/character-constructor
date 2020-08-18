@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { filesListGenerator } from '../FilesListGenerator';
+import { filesListGenerator } from '../utils/filesListGenerator';
 
 export const Clothes = [
     'manhattan',

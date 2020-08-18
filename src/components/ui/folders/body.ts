@@ -1,4 +1,4 @@
-import { FolderContext } from "../UIControls";
+import { FolderContext } from "../UIControlsComponent";
 
 export function addBody(context: FolderContext) {
     let body = context.gui.addFolder('BODY');

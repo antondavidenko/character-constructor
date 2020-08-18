@@ -1,7 +1,7 @@
-import { Eyes, Mouth, HairCategories, HairColors, AllHats, AllHeadDecor } from "../character/Head";
-import { Clothes, SkinColors, BodiesCollectionId, ClothesPalette, BaseModelList } from '../character/Body';
-import { Animations } from '../character/Animations';
-import { CarryItemsCategories } from "../character/CarryItems";
+import { Eyes, Mouth, HairCategories, HairColors, AllHats, AllHeadDecor } from "../../character/model/Head";
+import { Clothes, SkinColors, BodiesCollectionId, ClothesPalette, BaseModelList } from '../../character/model/Body';
+import { Animations } from '../../character/model/Animations';
+import { CarryItemsCategories } from "../../character/model/CarryItems";
 
 export const characterConfigOptions = {
     baseFBX: BaseModelList,

@@ -1,4 +1,4 @@
-import { filesListGenerator } from "../FilesListGenerator";
+import { filesListGenerator } from "../utils/filesListGenerator";
 
 export const HairColors = [
     0xeace56,

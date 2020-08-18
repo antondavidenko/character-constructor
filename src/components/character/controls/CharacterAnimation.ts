@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import { loadFBX } from '../../utils/loadFBX';
-import { Animations } from '../../model/character/Animations';
+import { loadFBX } from '../../../utils/loadFBX';
+import { Animations } from '../model/Animations';
 
 const ANIMATIONS_FOLDER = 'animations/';
 

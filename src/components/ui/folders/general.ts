@@ -1,5 +1,5 @@
-import { FolderContext } from "../UIControls";
-import { AnimationsOptions } from "../../../model/ui/UIOptions";
+import { FolderContext } from "../UIControlsComponent";
+import { AnimationsOptions } from "../model/UIOptions";
 
 export function addGeneral(context: FolderContext) {
     addRotation(context);

@@ -1,7 +1,7 @@
-import { FolderContext } from "../UIControls";
-import { updateDatDropdown } from "../updateDatDropdown";
-import { HeadSlotsCategories } from "../../../model/ui/UIOptions";
-import { HairCategories, HairCollection } from "../../../model/character/Head";
+import { FolderContext } from "../UIControlsComponent";
+import { updateDatDropdown } from "../utils/updateDatDropdown";
+import { HeadSlotsCategories } from "../model/UIOptions";
+import { HairCategories, HairCollection } from "../../character/model/Head";
 
 let slotsCategories = {
     hair: HairCategories.MALE,

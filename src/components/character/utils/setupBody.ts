@@ -1,8 +1,8 @@
-import { setTextureByImagesList } from '../../utils/setTextureByImage';
-import { FaceTextureX, FaceTextureY } from '../../model/character/Body';
-import { CharacterConfig } from '../../model/character/CharacterConfig';
-import { setScaleByVector3 } from '../../utils/helpers';
-import { BodiesCollection } from '../../model/character/Body';
+import { setTextureByImagesList } from '../../../utils/setTextureByImage';
+import { FaceTextureX, FaceTextureY } from '../model/Body';
+import { CharacterConfig } from '../model/CharacterConfig';
+import { setScaleByVector3 } from '../../../utils/helpers';
+import { BodiesCollection } from '../model/Body';
 
 const CLOTHES_TEXTURE_FOLDER = 'body/clothes/';
 const FACES_TEXTURE_FOLDER = 'head/faces/';

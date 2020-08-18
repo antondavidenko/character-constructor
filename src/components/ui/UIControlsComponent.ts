@@ -1,9 +1,9 @@
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module';
-import { Character } from '../Character';
-import { CharacterConfig } from '../../model/character/CharacterConfig';
-import { characterConfigOptions, AnimationsOptions } from '../../model/ui/UIOptions';
-import { Animations } from '../../model/character/Animations';
-import { selectToRadios } from '../../lib/dat.gui.radio';
+import { Character } from '../character/CharacterComponent';
+import { CharacterConfig } from '../character/model/CharacterConfig';
+import { characterConfigOptions, AnimationsOptions } from './model/UIOptions';
+import { Animations } from '../character/model/Animations';
+import { selectToRadios } from './utils/selectToRadios';
 import { addHead } from './folders/head';
 import { addBody } from './folders/body';
 import { addClothes } from './folders/clothes';

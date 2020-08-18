@@ -1,4 +1,4 @@
-import { FolderContext } from "../UIControls";
+import { FolderContext } from "../UIControlsComponent";
 
 export function addClothes(context: FolderContext) {
     let clothes = context.gui.addFolder('CLOTHES');
