@@ -14,12 +14,8 @@
         ],
         "baseUrl": ".",
         "paths": {
-            "/build/three.module.js": [
-                "node_modules/three/src/Three"
-            ],
-            "/jsm/*": [
-                "node_modules/three/examples/jsm/*"
-            ]
+            "/build/three.module.js": ["node_modules/three/src/Three"],
+            "/jsm/*": ["node_modules/three/examples/jsm/*"]
         },
         "moduleResolution": "node"
     },

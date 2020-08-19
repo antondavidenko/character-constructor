@@ -1,3 +1,5 @@
+import { BodyType } from "./BodyType";
+
 export type CharacterConfig = {
     baseFBX: string,
     hairFBX: string,
@@ -14,5 +16,5 @@ export type CharacterConfig = {
     leftHandSlot: string
     rightHandSlot: string,
     backSlot: string,
-    bodyTypeId: string,
+    bodyType: BodyType,
 };

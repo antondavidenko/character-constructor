@@ -1,24 +1,21 @@
-import { Eyes, Mouth, HairCategories, HairColors, AllHats, AllHeadDecor } from "../../character/model/Head";
-import { Clothes, SkinColors, BodiesCollectionId, ClothesPalette, BaseModelList } from '../../character/model/Body';
-import { Animations } from '../../character/model/Animations';
-import { CarryItemsCategories } from "../../character/model/CarryItems";
+import { characterAssetsStorage, CarryItemsCategories, HairCategories, BaseModelList, ClothesList, ClothesPalette, SkinColors, BodyTypeId } from "../../../components/storage/CharacterAssetsStorage";
 
 export const characterConfigOptions = {
     baseFBX: BaseModelList,
-    hairColor: HairColors,
-    hatFBX: AllHats,
-    headDecor1FBX: AllHeadDecor,
-    headDecor2FBX: AllHeadDecor,
-    clothesTexture: Clothes,
+    hairColor: characterAssetsStorage.getHairColors(),
+    hatFBX: characterAssetsStorage.getMouth(),
+    headDecor1FBX: characterAssetsStorage.getAllHeadDecor(),
+    headDecor2FBX: characterAssetsStorage.getAllHeadDecor(),
+    clothesTexture: ClothesList,
     clothesColor1: ClothesPalette,
     clothesColor2: ClothesPalette,
-    eyesTexture: Eyes,
-    mouthTexture: Mouth,
+    eyesTexture: characterAssetsStorage.getEyes(),
+    mouthTexture: characterAssetsStorage.getMouth(),
     skinColor: SkinColors,
     bodyTypeId: {
-        HOBBIT: BodiesCollectionId.HOBBIT,
-        HUMAN: BodiesCollectionId.HUMAN,
-        OGR: BodiesCollectionId.OGR,
+        HOBBIT: BodyTypeId.HOBBIT,
+        HUMAN: BodyTypeId.HUMAN,
+        OGR: BodyTypeId.OGR,
     },
 }
 
@@ -52,4 +49,4 @@ export const SlotsCategories = {
     ]
 }
 
-export const AnimationsOptions = Animations;
+export const AnimationsOptions = characterAssetsStorage.getAnimationsList();

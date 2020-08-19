@@ -11,8 +11,8 @@ export const HairColors = [
 export const Eyes = filesListGenerator('eyes', 18, true);
 export const Mouth = filesListGenerator('mouth', 12, true);
 
-const HairMaleList = filesListGenerator('HairMale', 18);
-const HairFemaleList = filesListGenerator('HairFemale', 18);
+const HairMaleList = filesListGenerator('HairMale', 18).concat(['none']);
+const HairFemaleList = filesListGenerator('HairFemale', 18).concat(['none']);
 
 export enum HairCategories {
     MALE = 'MALE',

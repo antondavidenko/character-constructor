@@ -1,4 +1,4 @@
-import { filesListGenerator } from "../utils/filesListGenerator";
+import { filesListGenerator } from "../../storage/utils/filesListGenerator";
 
 const SwordsList = filesListGenerator('Sword', 10, true);
 const ShieldsList = filesListGenerator('Shield', 10, true);

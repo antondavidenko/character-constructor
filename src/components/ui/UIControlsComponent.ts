@@ -1,14 +1,14 @@
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module';
 import { Character } from '../character/CharacterComponent';
 import { CharacterConfig } from '../character/model/CharacterConfig';
-import { characterConfigOptions, AnimationsOptions } from './model/UIOptions';
-import { Animations } from '../character/model/Animations';
+import { characterConfigOptions } from './model/UIOptions';
 import { selectToRadios } from './utils/selectToRadios';
 import { addHead } from './folders/head';
 import { addBody } from './folders/body';
 import { addClothes } from './folders/clothes';
 import { addSlots } from './folders/slots';
 import { addGeneral } from './folders/general';
+import { characterAssetsStorage } from '../storage/CharacterAssetsStorage';
 
 export class FolderContext {
     gui: GUI;
@@ -28,10 +28,9 @@ export class UIControls {
     private gui: GUI;
     private characterConfig: CharacterConfig;
     private rotation: number = 0;
-    private animation: string = Animations[4];
     private showDebugAxis:boolean = false;
 
-    constructor(private character: Character, private axesHelper: THREE.AxesHelper) {
+    constructor(private character: Character, private axesHelper: THREE.AxesHelper, private animation: string) {
         this.characterConfig = character.getConfig();
         this.gui = new GUI();
 

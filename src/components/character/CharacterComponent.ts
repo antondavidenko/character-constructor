@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import { loadFBX } from '../../utils/loadFBX';
 import { CharacterConfig } from './model/CharacterConfig';
-import { defaultCharackterConfig } from './model/DefaultCharackterConfig';
 import { CharacterSlots } from './controls/CharacterSlots';
 import { CharacterAnimation } from './controls/CharacterAnimation';
 import { setupBodyTexture, setupBodyType } from './utils/setupBody';
+import { BodyType } from './model/BodyType';
 
 const headId = "RigHead";
 const mainId = "RigPelvis";
@@ -17,7 +17,7 @@ export class Character {
     private characterSlots: CharacterSlots;
     private characterAnimation: CharacterAnimation = new CharacterAnimation();
 
-    constructor(private scene: THREE.Scene, private config: CharacterConfig = defaultCharackterConfig) {
+    constructor(private scene: THREE.Scene, private config: CharacterConfig, private animationFileId: string) {
         this.characterSlots = new CharacterSlots(this.config);
         this.init();
     }
@@ -47,7 +47,7 @@ export class Character {
         this.setupCarryItemSlot("leftHandSlot", this.config.leftHandSlot);
         this.setupCarryItemSlot("backSlot", this.config.backSlot);
 
-        this.characterAnimation.init(this.characterGroup);
+        this.characterAnimation.init(this.characterGroup, this.animationFileId);
     }
 
     update() {
@@ -61,7 +61,11 @@ export class Character {
         this.characterGroup.rotation.y = rotation;
     }
 
-    setupBodyType() {
+   resetBodyType(bodyType: BodyType) {
+        this.config.bodyType = bodyType;
+    }
+
+    private setupBodyType() {
         setupBodyType(this.characterGroup, this.head, this.config);
     }
 
@@ -93,8 +97,9 @@ export class Character {
         return this.config;
     }
 
-    resetAnimation(fileId:string) {
-        this.characterAnimation.resetAnimation(fileId);
+    resetAnimation(animationFileId:string) {
+        this.animationFileId = animationFileId;
+        this.characterAnimation.resetAnimation(animationFileId);
     }
 
 }

@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { loadFBX } from '../../../utils/loadFBX';
-import { Animations } from '../model/Animations';
 
 const ANIMATIONS_FOLDER = 'animations/';
 
@@ -10,9 +9,9 @@ export class CharacterAnimation {
     private mixer: THREE.AnimationMixer;
     private clock: THREE.Clock = new THREE.Clock();
 
-    async init(characterGroup: THREE.Group) {
+    async init(characterGroup: THREE.Group, fileId:string) {
         this.mixer = new THREE.AnimationMixer(characterGroup);
-        await this.setAnimation(Animations[4]);
+        await this.setAnimation(fileId);
         this.animationAction.play();
     }
 

@@ -1,8 +1,9 @@
 import { FolderContext } from "../UIControlsComponent";
-import { CarryItemsCategories, CarryItemsCollection } from "../../character/model/CarryItems";
 import { SlotsCategories } from "../model/UIOptions";
 import { updateDatDropdown } from "../utils/updateDatDropdown";
 import { Character } from "../../character/CharacterComponent";
+import { CarryItemsCategories } from "../../../components/storage/model/CarryItems";
+import { characterAssetsStorage } from "../../../components/storage/CharacterAssetsStorage";
 
 let slotsCategories = {
     rightHandSlot: CarryItemsCategories.SWORDS,
@@ -17,9 +18,9 @@ let slotsControlsUI = {
 }
 
 let slotsItemsId = {
-    rightHandSlot: CarryItemsCollection.get(CarryItemsCategories.SWORDS)[0],
-    leftHandSlot: CarryItemsCollection.get(CarryItemsCategories.SHIELDS)[0],
-    backSlot: CarryItemsCollection.get(CarryItemsCategories.BACKPACKS)[0],
+    rightHandSlot: characterAssetsStorage.getCarryItemsByCategories(CarryItemsCategories.SWORDS)[0],
+    leftHandSlot: characterAssetsStorage.getCarryItemsByCategories(CarryItemsCategories.SHIELDS)[0],
+    backSlot: characterAssetsStorage.getCarryItemsByCategories(CarryItemsCategories.BACKPACKS)[0],
 }
 
 let character: Character;
@@ -43,13 +44,13 @@ export function addSlots(context: FolderContext) {
 
 function setupCarryItemSlotCategory(root, slotId: string) {
     root.add(slotsCategories, slotId, SlotsCategories[slotId]).onChange((value) => {
-        updateDatDropdown(slotsControlsUI[slotId], CarryItemsCollection.get(value));
-        setupCarryItemSlotCallback(slotId, CarryItemsCollection.get(value)[0]);
+        updateDatDropdown(slotsControlsUI[slotId], characterAssetsStorage.getCarryItemsByCategories(value));
+        setupCarryItemSlotCallback(slotId, characterAssetsStorage.getCarryItemsByCategories(value)[0]);
     });
 }
 
 function setupCarryItemSlot(root, slotId: string) {
-    return root.add(slotsItemsId, slotId, CarryItemsCollection.get(slotsCategories[slotId]))
+    return root.add(slotsItemsId, slotId, characterAssetsStorage.getCarryItemsByCategories(slotsCategories[slotId]))
         .onChange(setupCarryItemSlotCallback.bind(this, slotId));
 }
 

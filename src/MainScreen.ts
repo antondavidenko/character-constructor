@@ -10,6 +10,8 @@ import { UIControls } from './components/ui/UIControlsComponent';
 import { Panorama } from './components/PanoramaComponent';
 import { updateFPS } from './utils/counterFPS';
 import { updateShaderMaterial } from './utils/shaderMaterials/shaderMaterialLava';
+import { characterAssetsStorage } from './components/storage/CharacterAssetsStorage';
+import { characterPresetsStorage } from './components/storage/CharacterPresetsStorage';
 
 export class MainScreen {
 
@@ -32,8 +34,16 @@ export class MainScreen {
         document.body.appendChild(this.stats.dom);
         this.axesHelper = new THREE.AxesHelper(5);
         this.scene.add(this.axesHelper);
-        this.character = new Character(this.scene);
-        new UIControls(this.character, this.axesHelper);
+        this.character = new Character(
+            this.scene,
+            characterPresetsStorage.getDefaultCharacterConfig(),
+            characterPresetsStorage.getDefaultAnimation()
+        );
+        new UIControls(
+            this.character,
+            this.axesHelper,
+            characterPresetsStorage.getDefaultAnimation()
+        );
         new Panorama(this.scene);
         this.axesHelper.visible = false;
     }

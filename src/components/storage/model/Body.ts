@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { filesListGenerator } from '../utils/filesListGenerator';
+import { BodyType } from 'src/components/character/model/BodyType';
 
-export const Clothes = [
+export const ClothesList = [
     'manhattan',
     'archer',
     'barbarian',
@@ -39,35 +39,26 @@ export const ClothesPalette = [
 
 export const BaseModelList = ["BaseNormal", "BaseRobe01", "BaseRobe02"];
 
-export enum BodiesCollectionId {
+export enum BodyTypeId {
     HOBBIT = 'HOBBIT',
     HUMAN = 'HUMAN',
     OGR = 'OGR',
 };
 
-export const FaceTextureX = 380;
-export const FaceTextureY = 143;
-
-export const BodiesCollection = {
-    HOBBIT: {
+export const BodiesCollection: Map<BodyTypeId, BodyType> = new Map([
+    [ BodyTypeId.HOBBIT, {
         body: new THREE.Vector3(.01, .01, .01),
         head: new THREE.Vector3(1, 1, 1),
         headOffset: 41,
-    },
-    HUMAN: {
+    }],
+    [ BodyTypeId.HUMAN, {
         body: new THREE.Vector3(.01, .015, .01),
         head: new THREE.Vector3(.6, .5, .7),
         headOffset: 28,
-    },
-    OGR: {
+    }],
+    [ BodyTypeId.OGR, {
         body: new THREE.Vector3(.015, .018, .015),
         head: new THREE.Vector3(.5, .4, .6),
         headOffset: 24,
-    }
-}
-
-export type BodyType = {
-    body: THREE.Vector3,
-    head: THREE.Vector3,
-    headOffset: number,
-}
+    }]
+]);
