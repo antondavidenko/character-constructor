@@ -39,10 +39,7 @@ export class Character {
 
         this.setupBodyType();
         this.setupBodyTexture();
-        this.setupHair(this.config.hairFBX, this.config.hairColor);
-        this.setupHat(this.config.hatFBX);
-        this.headDecor1(this.config.headDecor1FBX);
-        this.headDecor2(this.config.headDecor2FBX);
+        this.characterSlots.setupHead(this.config);
         this.setupCarryItemSlot("rightHandSlot", this.config.rightHandSlot);
         this.setupCarryItemSlot("leftHandSlot", this.config.leftHandSlot);
         this.setupCarryItemSlot("backSlot", this.config.backSlot);
@@ -70,19 +67,19 @@ export class Character {
     }
 
     async setupHair(hairFBX: string, color: number = 0xffffff) {
-        this.characterSlots.setupHair(hairFBX, color);
+        this.characterSlots.setupHead(this.config);
     }
 
     setupHat(hatFBX: string) {
-        this.characterSlots.setupHat(hatFBX);
+        this.characterSlots.setupHead(this.config);
     }
 
     headDecor1(decorFBX: string) {
-        this.characterSlots.headDecor1(decorFBX);
+        this.characterSlots.setupHead(this.config);
     }
 
     headDecor2(decorFBX: string) {
-        this.characterSlots.headDecor2(decorFBX);
+        this.characterSlots.setupHead(this.config);
     }
 
     setupBodyTexture() {
@@ -95,6 +92,11 @@ export class Character {
 
     getConfig(): CharacterConfig {
         return this.config;
+    }
+
+    setConfig(config: CharacterConfig): void {
+        this.config = config;
+        this.reInit();
     }
 
     resetAnimation(animationFileId:string) {

@@ -15,7 +15,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: [ '.tsx', '.ts', '.js' ],
+    alias: {
+        '@src': './src',
+    },
   },
   output: {
     filename: 'main.js',

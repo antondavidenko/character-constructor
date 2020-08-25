@@ -30,24 +30,28 @@ export class CharacterSlots {
         this.characterGroup = characterGroup;
     }
 
-    setupHair(hairFBX: string, color: number = 0xffffff) {
-        this.config.hairFBX = hairFBX;
+    private setupHair(hairFBX: string, color: number = 0xffffff) {
+        this.config.hairFBX = hairFBX === 'none' ? null : hairFBX;
         this.config.hairColor = color;
-        this.updateHead();
     }
 
-    setupHat(hatFBX: string) {
+    private setupHat(hatFBX: string) {
         this.config.hatFBX = hatFBX === 'none' ? null : hatFBX;
-        this.updateHead();
     }
 
-    headDecor1(decorFBX: string) {
+    private headDecor1(decorFBX: string) {
         this.config.headDecor1FBX = decorFBX === 'none' ? null : decorFBX;
-        this.updateHead();
     }
 
-    headDecor2(decorFBX: string) {
+    private headDecor2(decorFBX: string) {
         this.config.headDecor2FBX = decorFBX === 'none' ? null : decorFBX;
+    }
+
+    setupHead(config: CharacterConfig) {
+        this.setupHair(config.hairFBX, config.hairColor);
+        this.setupHat(config.hatFBX);
+        this.headDecor1(config.headDecor1FBX);
+        this.headDecor2(config.headDecor2FBX);
         this.updateHead();
     }
 
@@ -83,8 +87,8 @@ export class CharacterSlots {
 
     setupCarryItemSlot(slotId: string, carryItemsFBX: string) {
         const slotFBX = slotMap.get(slotId);
-        const fileFBX = carryItemsFBX ? `models/carryitems/${carryItemsFBX}.FBX` : carryItemsFBX;
-        const textureFile = carryItemsFBX ? `carryitems/${carryItemsFBX}` : carryItemsFBX;
+        const fileFBX = carryItemsFBX !== 'none' ? `models/carryitems/${carryItemsFBX}.FBX` : null;
+        const textureFile = carryItemsFBX !== 'none' ? `carryitems/${carryItemsFBX}` : null;
         const color = 0xffffff;
         this.clearSlot(slotFBX);
         this.setupSlot(slotFBX, fileFBX, textureFile, color);

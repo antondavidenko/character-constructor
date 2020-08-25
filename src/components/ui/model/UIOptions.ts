@@ -1,17 +1,17 @@
-import { characterAssetsStorage, CarryItemsCategories, HairCategories, BaseModelList, ClothesList, ClothesPalette, SkinColors, BodyTypeId } from "../../../components/storage/CharacterAssetsStorage";
+import { characterAssetsStorage, CarryItemsCategories, HairCategories, BodyTypeId } from "../../../components/storage/CharacterAssetsStorage";
 
 export const characterConfigOptions = {
-    baseFBX: BaseModelList,
+    baseFBX: characterAssetsStorage.getBaseModelList(),
     hairColor: characterAssetsStorage.getHairColors(),
-    hatFBX: characterAssetsStorage.getMouth(),
+    hatFBX: characterAssetsStorage.getAllHats(),
     headDecor1FBX: characterAssetsStorage.getAllHeadDecor(),
     headDecor2FBX: characterAssetsStorage.getAllHeadDecor(),
-    clothesTexture: ClothesList,
-    clothesColor1: ClothesPalette,
-    clothesColor2: ClothesPalette,
+    clothesTexture: characterAssetsStorage.getClothesList(),
+    clothesColor1: characterAssetsStorage.getClothesPalette(),
+    clothesColor2: characterAssetsStorage.getClothesPalette(),
     eyesTexture: characterAssetsStorage.getEyes(),
     mouthTexture: characterAssetsStorage.getMouth(),
-    skinColor: SkinColors,
+    skinColor: characterAssetsStorage.getSkinColors(),
     bodyTypeId: {
         HOBBIT: BodyTypeId.HOBBIT,
         HUMAN: BodyTypeId.HUMAN,

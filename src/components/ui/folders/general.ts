@@ -1,5 +1,6 @@
 import { FolderContext } from "../UIControlsComponent";
 import { AnimationsOptions } from "../model/UIOptions";
+import { characterPresetsStorage } from "../../../components/storage/CharacterPresetsStorage";
 
 export function addGeneral(context: FolderContext) {
     addRotation(context);
@@ -29,11 +30,18 @@ function addShowDebugAxis(context: FolderContext) {
 }
 
 function randomPresets(context: FolderContext) {
-    var obj = { randomPresets:function(){ console.log("randomPresets") }};
+    var obj = { randomPresets: () => {
+        const configObject = characterPresetsStorage.getRandomCharacterConfig();
+        context.character.setConfig(configObject);
+    }};
     context.gui.add(obj,'randomPresets');
 }
 
 function exportPresets(context: FolderContext) {
-    var obj = { exportPresets:function(){ console.log("exportPresets") }};
+    var obj = { exportPresets: () => {
+        const stringData = JSON.stringify(context.character.getConfig())
+        console.log(stringData);
+    }};
     context.gui.add(obj,'exportPresets');
 }
+

@@ -42,13 +42,25 @@ class CharacterAssetsStorage {
         return AllHats;
     }
 
+    getSkinColors(): string[] {
+        return SkinColors;
+    }
+
+    getClothesPalette(): string[] {
+        return ClothesPalette;
+    }
+
+    getBaseModelList(): string[] {
+        return BaseModelList;
+    }
+
+    getClothesList(): string[] {
+        return ClothesList;
+    }
+
 }
 
 export const characterAssetsStorage = new CharacterAssetsStorage();
 export { CarryItemsCategories };
 export { HairCategories };
-export { SkinColors };
-export { ClothesPalette };
-export { BaseModelList };
-export { ClothesList };
 export { BodyTypeId };

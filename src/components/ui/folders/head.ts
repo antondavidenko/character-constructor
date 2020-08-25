@@ -33,11 +33,7 @@ export function addHead(context: FolderContext) {
 }
 
 function setupHair() {
-    if (_context.characterConfig.hairFBX !== "none") {
-        _context.character.setupHair(_context.characterConfig.hairFBX, _context.characterConfig.hairColor);
-    } else {
-        _context.character.setupHair(null, _context.characterConfig.hairColor);
-    }
+    _context.character.setupHair(_context.characterConfig.hairFBX, _context.characterConfig.hairColor);
 }
 
 function setupHeadSlotCategory(root, slotId: string, context: FolderContext) {

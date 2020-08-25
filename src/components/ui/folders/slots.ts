@@ -55,6 +55,5 @@ function setupCarryItemSlot(root, slotId: string) {
 }
 
 function setupCarryItemSlotCallback(slotId, value) {
-    value = value === "none" ? null : value;
     character.setupCarryItemSlot(slotId, value);
 }
