@@ -10,7 +10,6 @@ import { UIControls } from './components/ui/UIControlsComponent';
 import { Panorama } from './components/PanoramaComponent';
 import { updateFPS } from './utils/counterFPS';
 import { updateShaderMaterial } from './utils/shaderMaterials/shaderMaterialLava';
-import { characterAssetsStorage } from './components/storage/CharacterAssetsStorage';
 import { characterPresetsStorage } from './components/storage/CharacterPresetsStorage';
 
 export class MainScreen {
@@ -39,6 +38,7 @@ export class MainScreen {
             characterPresetsStorage.getDefaultCharacterConfig(),
             characterPresetsStorage.getDefaultAnimation()
         );
+
         new UIControls(
             this.character,
             this.axesHelper,

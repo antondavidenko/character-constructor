@@ -1,11 +1,11 @@
 import { CharacterConfig } from "src/components/character/model/CharacterConfig";
-import { characterAssetsStorage, CarryItemsCategories, HairCategories, BodyTypeId } from "../CharacterAssetsStorage";
+import { characterAssetsStorage as storage, CarryItemsCategories, HairCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../CharacterAssetsStorage";
 
 const BodyTypes = [BodyTypeId.HUMAN, BodyTypeId.OGR, BodyTypeId.HOBBIT];
 const Hairs = [HairCategories.MALE, HairCategories.FEMALE];
 
 export function randomCharacterConfig(): CharacterConfig {
-    const hairsList = characterAssetsStorage.getHairsByCategories(getRandomElement(Hairs));
+    const hairsList = storage.getHairsByCategories(getRandomElement(Hairs));
     const inHandItems = [
         CarryItemsCategories.CLAWS,
         CarryItemsCategories.DAGGERS,
@@ -15,26 +15,23 @@ export function randomCharacterConfig(): CharacterConfig {
         CarryItemsCategories.SWORDS
     ];
 
-    const leftHandItem = getRandomElement(characterAssetsStorage.getCarryItemsByCategories(getRandomElement(inHandItems)));
-    const rightHandItem = getRandomElement(characterAssetsStorage.getCarryItemsByCategories(getRandomElement(inHandItems)));
-
     return {
-        baseFBX: getRandomElement(characterAssetsStorage.getBaseModelList()),
+        baseFBX: getRandomElement(storage.getList(ASSET_LIST.BASE)),
         hairFBX: getRandomElement(hairsList),
-        hatFBX: getRandomElement(characterAssetsStorage.getAllHats()),
-        headDecor1FBX: getRandomElement(characterAssetsStorage.getAllHeadDecor()),
+        hatFBX: getRandomElement(storage.getList(ASSET_LIST.HATS)),
+        headDecor1FBX: getRandomElement(storage.getList(ASSET_LIST.HEADDECOR)),
         headDecor2FBX: 'none',
-        hairColor: getRandomElement(characterAssetsStorage.getHairColors()),
-        clothesTexture: getRandomElement(characterAssetsStorage.getClothesList()),
-        skinColor: getRandomElement(characterAssetsStorage.getSkinColors()),
-        eyesTexture: getRandomElement(characterAssetsStorage.getEyes()),
-        mouthTexture: getRandomElement(characterAssetsStorage.getMouth()),
-        clothesColor1: getRandomElement(characterAssetsStorage.getClothesPalette()),
-        clothesColor2: getRandomElement(characterAssetsStorage.getClothesPalette()),
-        leftHandSlot: leftHandItem,
-        rightHandSlot: rightHandItem,
-        backSlot: getRandomElement(characterAssetsStorage.getCarryItemsByCategories(CarryItemsCategories.BACKPACKS)),
-        bodyType: characterAssetsStorage.getBodyTypeById(getRandomElement(BodyTypes)),
+        hairColor: getRandomElement(storage.getColors(COLORS_LIST.HAIR)),
+        clothesTexture: getRandomElement(storage.getList(ASSET_LIST.CLOTHES)),
+        skinColor: getRandomElement(storage.getColors(COLORS_LIST.SKIN)),
+        eyesTexture: getRandomElement(storage.getList(ASSET_LIST.EYES)),
+        mouthTexture: getRandomElement(storage.getList(ASSET_LIST.MOUTH)),
+        clothesColor1: getRandomElement(storage.getColors(COLORS_LIST.CLOTHES)),
+        clothesColor2: getRandomElement(storage.getColors(COLORS_LIST.CLOTHES)),
+        leftHandSlot: getRandomElement(storage.getItems(getRandomElement(inHandItems))),
+        rightHandSlot: getRandomElement(storage.getItems(getRandomElement(inHandItems))),
+        backSlot: getRandomElement(storage.getItems(CarryItemsCategories.BACKPACKS)),
+        bodyType: storage.getBodyTypeById(getRandomElement(BodyTypes)),
     }
 }
 

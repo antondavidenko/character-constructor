@@ -1,12 +1,12 @@
-import { defaultCharacterConfig } from './model/DefaultCharacterConfig';
+import { getDefaultCharacterConfig } from './model/DefaultCharacterConfig';
 import { CharacterConfig } from '../character/model/CharacterConfig';
-import { Animations } from './model/Animations';
 import { randomCharacterConfig } from './utils/randomCharacterConfig';
+import { characterAssetsStorage, ASSET_LIST } from './CharacterAssetsStorage';
 
 class CharacterPresetsStorage {
 
     getDefaultCharacterConfig(): CharacterConfig {
-        return defaultCharacterConfig;
+        return getDefaultCharacterConfig();
     }
 
     getRandomCharacterConfig(): CharacterConfig {
@@ -14,7 +14,7 @@ class CharacterPresetsStorage {
     }
 
     getDefaultAnimation(): string {
-        return Animations[4];
+        return characterAssetsStorage.getList(ASSET_LIST.ANIMATIONS)[4];
     }
 
 }

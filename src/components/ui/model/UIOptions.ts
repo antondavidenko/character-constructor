@@ -1,17 +1,17 @@
-import { characterAssetsStorage, CarryItemsCategories, HairCategories, BodyTypeId } from "../../../components/storage/CharacterAssetsStorage";
+import { characterAssetsStorage, CarryItemsCategories, HairCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../../../components/storage/CharacterAssetsStorage";
 
 export const characterConfigOptions = {
-    baseFBX: characterAssetsStorage.getBaseModelList(),
-    hairColor: characterAssetsStorage.getHairColors(),
-    hatFBX: characterAssetsStorage.getAllHats(),
-    headDecor1FBX: characterAssetsStorage.getAllHeadDecor(),
-    headDecor2FBX: characterAssetsStorage.getAllHeadDecor(),
-    clothesTexture: characterAssetsStorage.getClothesList(),
-    clothesColor1: characterAssetsStorage.getClothesPalette(),
-    clothesColor2: characterAssetsStorage.getClothesPalette(),
-    eyesTexture: characterAssetsStorage.getEyes(),
-    mouthTexture: characterAssetsStorage.getMouth(),
-    skinColor: characterAssetsStorage.getSkinColors(),
+    baseFBX: ASSET_LIST.BASE,
+    hairColor: COLORS_LIST.HAIR,
+    hatFBX: ASSET_LIST.HATS,
+    headDecor1FBX: ASSET_LIST.HEADDECOR,
+    headDecor2FBX: ASSET_LIST.HEADDECOR,
+    clothesTexture: ASSET_LIST.CLOTHES,
+    clothesColor1: COLORS_LIST.CLOTHES,
+    clothesColor2: COLORS_LIST.CLOTHES,
+    eyesTexture: ASSET_LIST.EYES,
+    mouthTexture: ASSET_LIST.MOUTH,
+    skinColor: COLORS_LIST.SKIN,
     bodyTypeId: {
         HOBBIT: BodyTypeId.HOBBIT,
         HUMAN: BodyTypeId.HUMAN,
@@ -49,4 +49,6 @@ export const SlotsCategories = {
     ]
 }
 
-export const AnimationsOptions = characterAssetsStorage.getAnimationsList();
+export function getAnimationsOptions(): string[] {
+    return characterAssetsStorage.getList(ASSET_LIST.ANIMATIONS);
+}

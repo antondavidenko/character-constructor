@@ -12,12 +12,14 @@ let slotsControlsUI = {
 }
 
 let slotsItemsId = {
-    hair: characterAssetsStorage.getHairsByCategories(HairCategories.MALE)[0],
+    hair: "",
 }
 
 let _context: FolderContext;
 
 export function addHead(context: FolderContext) {
+    slotsItemsId.hair = characterAssetsStorage.getHairsByCategories(HairCategories.MALE)[0];
+
     let head = context.gui.addFolder('HEAD');
     _context = context;
 

@@ -1,3 +1,7 @@
 import { MainScreen } from './MainScreen';
+import { characterAssetsStorage } from './components/storage/CharacterAssetsStorage';
 
-new MainScreen();
+characterAssetsStorage.initStorage();
+setTimeout(() => {
+    new MainScreen();
+}, 3000);

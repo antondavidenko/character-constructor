@@ -55,11 +55,13 @@ export class UIControls {
     }
 
     private addColorPicker(root, key) {
-        return selectToRadios(root.add(this.characterConfig, key, characterConfigOptions[key]));
+        const options = characterAssetsStorage.getColors(characterConfigOptions[key]);
+        return selectToRadios(root.add(this.characterConfig, key, options));
     }
 
     private addCharacterConfig(root, key, UIkey = key) {
-        return root.add(this.characterConfig, key, characterConfigOptions[UIkey]);
+        const options = characterAssetsStorage.getList(characterConfigOptions[UIkey]);
+        return root.add(this.characterConfig, key, options);
     }
 
 }

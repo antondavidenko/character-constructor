@@ -18,14 +18,20 @@ let slotsControlsUI = {
 }
 
 let slotsItemsId = {
-    rightHandSlot: characterAssetsStorage.getCarryItemsByCategories(CarryItemsCategories.SWORDS)[0],
-    leftHandSlot: characterAssetsStorage.getCarryItemsByCategories(CarryItemsCategories.SHIELDS)[0],
-    backSlot: characterAssetsStorage.getCarryItemsByCategories(CarryItemsCategories.BACKPACKS)[0],
+    rightHandSlot: '',
+    leftHandSlot: '',
+    backSlot: '',
 }
 
 let character: Character;
 
 export function addSlots(context: FolderContext) {
+
+    slotsItemsId.rightHandSlot = characterAssetsStorage.getItems(CarryItemsCategories.SWORDS)[0],
+    slotsItemsId.leftHandSlot = characterAssetsStorage.getItems(CarryItemsCategories.SHIELDS)[0],
+    slotsItemsId.backSlot = characterAssetsStorage.getItems(CarryItemsCategories.BACKPACKS)[0],
+
+
     character = context.character;
     let slots = context.gui.addFolder('SLOTS');
 
@@ -44,13 +50,13 @@ export function addSlots(context: FolderContext) {
 
 function setupCarryItemSlotCategory(root, slotId: string) {
     root.add(slotsCategories, slotId, SlotsCategories[slotId]).onChange((value) => {
-        updateDatDropdown(slotsControlsUI[slotId], characterAssetsStorage.getCarryItemsByCategories(value));
-        setupCarryItemSlotCallback(slotId, characterAssetsStorage.getCarryItemsByCategories(value)[0]);
+        updateDatDropdown(slotsControlsUI[slotId], characterAssetsStorage.getItems(value));
+        setupCarryItemSlotCallback(slotId, characterAssetsStorage.getItems(value)[0]);
     });
 }
 
 function setupCarryItemSlot(root, slotId: string) {
-    return root.add(slotsItemsId, slotId, characterAssetsStorage.getCarryItemsByCategories(slotsCategories[slotId]))
+    return root.add(slotsItemsId, slotId, characterAssetsStorage.getItems(slotsCategories[slotId]))
         .onChange(setupCarryItemSlotCallback.bind(this, slotId));
 }
 

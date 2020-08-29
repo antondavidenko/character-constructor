@@ -1,5 +1,5 @@
 import { FolderContext } from "../UIControlsComponent";
-import { AnimationsOptions } from "../model/UIOptions";
+import { getAnimationsOptions } from "../model/UIOptions";
 import { characterPresetsStorage } from "../../../components/storage/CharacterPresetsStorage";
 
 export function addGeneral(context: FolderContext) {
@@ -18,7 +18,7 @@ function addRotation(context: FolderContext) {
 }
 
 function addAnimations(context: FolderContext) {
-    context.gui.add(context, 'animation', AnimationsOptions).onChange((value) => {
+    context.gui.add(context, 'animation', getAnimationsOptions()).onChange((value) => {
         context.character.resetAnimation(value);
     });
 }

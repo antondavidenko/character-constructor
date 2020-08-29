@@ -1,6 +1,7 @@
 import { CharacterConfig } from "../model/CharacterConfig";
 import { loadFBX } from "../../../utils/loadFBX";
 import { setTextureByImage } from "../../../utils/setTextureByImage";
+import { colorStringToNumber } from "../utils/colors";
 
 const headSlot = "Dummy_Prop_Head";
 const leftHandSlot = "Dummy_Prop_Left";
@@ -30,7 +31,7 @@ export class CharacterSlots {
         this.characterGroup = characterGroup;
     }
 
-    private setupHair(hairFBX: string, color: number = 0xffffff) {
+    private setupHair(hairFBX: string, color = '#ffffff') {
         this.config.hairFBX = hairFBX === 'none' ? null : hairFBX;
         this.config.hairColor = color;
     }
@@ -82,7 +83,7 @@ export class CharacterSlots {
         const { hairFBX } = this.config;
         const { hairColor } = this.config;
         const fileHairFBX = hairFBX === null ? null : `models/head/hair/${hairFBX}.FBX`;
-        this.setupSlot(headSlot, fileHairFBX, null, hairColor);
+        this.setupSlot(headSlot, fileHairFBX, null, colorStringToNumber(hairColor));
     }
 
     setupCarryItemSlot(slotId: string, carryItemsFBX: string) {

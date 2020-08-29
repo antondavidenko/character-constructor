@@ -20,13 +20,13 @@ const ClawsWeapons = filesListGenerator('Claw', 3)
     .concat(['none']);
 
 export enum CarryItemsCategories {
-    BACKPACKS = 'BACKPACKS',
-    SHIELDS = 'SHIELDS',
-    SWORDS = 'SWORDS',
-    RANGED = 'RANGED',
-    HEAVY = 'HEAVY',
-    DAGGERS = 'DAGGERS',
-    CLAWS = 'CLAWS',
+    BACKPACKS = 'backpack',
+    SHIELDS = 'shields',
+    SWORDS = 'swords',
+    RANGED = 'ranged',
+    HEAVY = 'heavy',
+    DAGGERS = 'daggers',
+    CLAWS = 'claws',
 };
 
 export const CarryItemsCollection = new Map([

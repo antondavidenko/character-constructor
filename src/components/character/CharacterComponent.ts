@@ -66,7 +66,7 @@ export class Character {
         setupBodyType(this.characterGroup, this.head, this.config);
     }
 
-    async setupHair(hairFBX: string, color: number = 0xffffff) {
+    async setupHair(hairFBX: string, color = '#ffffff') {
         this.characterSlots.setupHead(this.config);
     }
 
