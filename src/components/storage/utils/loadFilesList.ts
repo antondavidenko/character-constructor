@@ -1,6 +1,6 @@
 import * as $ from "jquery";
 
-const CDN_ROOT = "http://127.0.0.1:5500/";
+export const CDN_ROOT = "http://127.0.0.1:5500/";
 const CONFIG = "cdn_config.json";
 
 export function loadList(callback: (data: any) => void): void {

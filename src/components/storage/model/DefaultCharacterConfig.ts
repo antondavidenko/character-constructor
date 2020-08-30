@@ -1,10 +1,10 @@
 import { CharacterConfig } from "../../character/model/CharacterConfig";
-import { characterAssetsStorage as storage, CarryItemsCategories, HairCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../CharacterAssetsStorage";
+import { characterAssetsStorage as storage, CarryItemsCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../CharacterAssetsStorage";
 
 export function getDefaultCharacterConfig(): CharacterConfig {
     return {
         baseFBX: storage.getList(ASSET_LIST.BASE)[0],
-        hairFBX: storage.getHairsByCategories(HairCategories.MALE)[0],
+        hairFBX: storage.getList(ASSET_LIST.HAIRMALE)[0],
         hatFBX: null,
         headDecor1FBX: null,
         headDecor2FBX: null,

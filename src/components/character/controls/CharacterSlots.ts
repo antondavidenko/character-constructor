@@ -2,6 +2,7 @@ import { CharacterConfig } from "../model/CharacterConfig";
 import { loadFBX } from "../../../utils/loadFBX";
 import { setTextureByImage } from "../../../utils/setTextureByImage";
 import { colorStringToNumber } from "../utils/colors";
+import { CDN_ROOT } from "../../../components/storage/utils/loadFilesList";
 
 const headSlot = "Dummy_Prop_Head";
 const leftHandSlot = "Dummy_Prop_Left";
@@ -99,12 +100,12 @@ export class CharacterSlots {
     private async setupSlot(slotId: string, fileFBX: string, textureFile: string, color: number = 0xffffff) {
         let item: THREE.Group;
         if (fileFBX) {
-            item = await loadFBX(fileFBX);
+            item = await loadFBX(fileFBX, CDN_ROOT);
             this.fixRotationOnDemand(slotId, item, fileFBX)
             this.characterGroup.getObjectByName(slotId).add(item);
         }
         if (textureFile && fileFBX) {
-            setTextureByImage(item.children[0], textureFile);
+            setTextureByImage(item.children[0], textureFile, CDN_ROOT);
         }
         if (color !== 0xffffff && fileFBX) {
             (item.children[0] as any).material.color.setHex(color);

@@ -1,11 +1,11 @@
 import { CharacterConfig } from "src/components/character/model/CharacterConfig";
-import { characterAssetsStorage as storage, CarryItemsCategories, HairCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../CharacterAssetsStorage";
+import { characterAssetsStorage as storage, CarryItemsCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../CharacterAssetsStorage";
 
 const BodyTypes = [BodyTypeId.HUMAN, BodyTypeId.OGR, BodyTypeId.HOBBIT];
-const Hairs = [HairCategories.MALE, HairCategories.FEMALE];
+const Hairs = [ASSET_LIST.HAIRMALE, ASSET_LIST.HAIRFEMALE];
 
 export function randomCharacterConfig(): CharacterConfig {
-    const hairsList = storage.getHairsByCategories(getRandomElement(Hairs));
+    const hairsList = storage.getList(getRandomElement(Hairs));
     const inHandItems = [
         CarryItemsCategories.CLAWS,
         CarryItemsCategories.DAGGERS,

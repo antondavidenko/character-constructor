@@ -1,10 +1,10 @@
 import { FolderContext } from "../UIControlsComponent";
 import { updateDatDropdown } from "../utils/updateDatDropdown";
 import { HeadSlotsCategories } from "../model/UIOptions";
-import { characterAssetsStorage, HairCategories } from "../../../components/storage/CharacterAssetsStorage";
+import { characterAssetsStorage, ASSET_LIST } from "../../../components/storage/CharacterAssetsStorage";
 
 let slotsCategories = {
-    hair: HairCategories.MALE,
+    hair: ASSET_LIST.HAIRMALE,
 }
 
 let slotsControlsUI = {
@@ -18,7 +18,7 @@ let slotsItemsId = {
 let _context: FolderContext;
 
 export function addHead(context: FolderContext) {
-    slotsItemsId.hair = characterAssetsStorage.getHairsByCategories(HairCategories.MALE)[0];
+    slotsItemsId.hair = characterAssetsStorage.getList(ASSET_LIST.HAIRMALE)[0];
 
     let head = context.gui.addFolder('HEAD');
     _context = context;
@@ -40,14 +40,14 @@ function setupHair() {
 
 function setupHeadSlotCategory(root, slotId: string, context: FolderContext) {
     root.add(slotsCategories, slotId, HeadSlotsCategories[slotId]).onChange((value) => {
-        updateDatDropdown(slotsControlsUI[slotId], characterAssetsStorage.getHairsByCategories(value));
-        context.characterConfig.hairFBX = characterAssetsStorage.getHairsByCategories(value)[0];
+        updateDatDropdown(slotsControlsUI[slotId], characterAssetsStorage.getList(value));
+        context.characterConfig.hairFBX = characterAssetsStorage.getList(value)[0];
         setupHair.call(context);
     });
 }
 
 function setupCarryItemSlot(root, slotId: string, context: FolderContext) {
-    return root.add(slotsItemsId, slotId, characterAssetsStorage.getHairsByCategories(slotsCategories[slotId]))
+    return root.add(slotsItemsId, slotId, characterAssetsStorage.getList(slotsCategories[slotId]))
         .onChange((value) => {
             context.characterConfig.hairFBX = value;
             setupHair.call(context);

@@ -1,6 +1,7 @@
 import { setTextureByImagesList } from '../../../utils/setTextureByImage';
 import { CharacterConfig } from '../model/CharacterConfig';
 import { setScaleByVector3 } from '../../../utils/helpers';
+import { CDN_ROOT } from '../../../components/storage/utils/loadFilesList';
 
 const FaceTextureX = 380;
 const FaceTextureY = 143;
@@ -36,7 +37,7 @@ export async function setupBodyTexture(characterGroup: THREE.Group, config: Char
         });
     }
 
-    setTextureByImagesList(characterGroup.getObjectByName("Base"), canvasTesturesList, config.skinColor);
+    setTextureByImagesList(characterGroup.getObjectByName("Base"), canvasTesturesList, config.skinColor, CDN_ROOT);
 }
 
 export function setupBodyType(characterGroup: THREE.Group, head: THREE.Object3D, config: CharacterConfig) {

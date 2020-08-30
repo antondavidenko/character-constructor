@@ -7,13 +7,13 @@ export type CanvasTestureItem = {
     colorMask?: string,
 }
 
-export function setTextureByImage(object:any, filename:string) {
-    const texture = new THREE.TextureLoader().load(`textures/${filename}.png`);
+export function setTextureByImage(object:any, filename:string, root = "") {
+    const texture = new THREE.TextureLoader().load(`${root}textures/${filename}.png`);
     texture.anisotropy = 32;
     replaceMaterial(object, texture);
 }
 
-export async function setTextureByImagesList(object:any, canvasTesturesList: CanvasTestureItem[], color:string = "") {
+export async function setTextureByImagesList(object:any, canvasTesturesList: CanvasTestureItem[], color:string = "", root = "") {
     let canvas = document.createElement('canvas');
     let context = canvas.getContext('2d');
     let size = 512;
@@ -25,7 +25,7 @@ export async function setTextureByImagesList(object:any, canvasTesturesList: Can
     replaceMaterial(object, texture);
 
     canvasTesturesList.forEach(async (canvasTestureItem: CanvasTestureItem ) => {
-        let image = await loadTextureImage(`textures/${canvasTestureItem.file}.png`);
+        let image = await loadTextureImage(`${root}textures/${canvasTestureItem.file}.png`);
         const x = canvasTestureItem.x || 0;
         const y = canvasTestureItem.y || 0;
         if (canvasTestureItem.colorMask) {

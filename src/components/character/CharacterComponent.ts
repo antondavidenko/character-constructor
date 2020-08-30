@@ -5,6 +5,7 @@ import { CharacterSlots } from './controls/CharacterSlots';
 import { CharacterAnimation } from './controls/CharacterAnimation';
 import { setupBodyTexture, setupBodyType } from './utils/setupBody';
 import { BodyType } from './model/BodyType';
+import { CDN_ROOT } from '../storage/utils/loadFilesList';
 
 const headId = "RigHead";
 const mainId = "RigPelvis";
@@ -33,7 +34,7 @@ export class Character {
     }
 
     private async setupAll() {
-        this.characterGroup = await loadFBX("models/"+this.config.baseFBX+".FBX");
+        this.characterGroup = await loadFBX("models/"+this.config.baseFBX+".FBX", CDN_ROOT);
         this.head = this.characterGroup.getObjectByName(headId);
         this.characterSlots.setCharacterGroup(this.characterGroup);
 

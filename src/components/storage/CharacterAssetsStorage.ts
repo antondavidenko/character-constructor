@@ -9,11 +9,6 @@ export enum BodyTypeId {
     OGR = 'OGR',
 };
 
-export enum HairCategories {
-    MALE = 'MALE',
-    FEMALE = 'FEMALE',
-};
-
 export enum ASSET_LIST {
     ANIMATIONS = 'animations',
     EYES = 'eyes',
@@ -80,14 +75,6 @@ class CharacterAssetsStorage {
 
     getBodyTypeById(bodyTypeId: BodyTypeId): BodyType {
         return this.getBodiesCollection().get(bodyTypeId);
-    }
-
-    getHairsByCategories(categoryId: HairCategories): string[] {
-        const HairCollection = new Map([
-            [HairCategories.MALE, this.getList(ASSET_LIST.HAIRMALE)],
-            [HairCategories.FEMALE, this.getList(ASSET_LIST.HAIRFEMALE)],
-        ]);
-        return HairCollection.get(categoryId);
     }
 
     initStorage(): void {

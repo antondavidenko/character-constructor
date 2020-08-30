@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { loadFBX } from '../../../utils/loadFBX';
+import { CDN_ROOT } from '../../../components/storage/utils/loadFilesList';
 
 const ANIMATIONS_FOLDER = 'animations/';
 
@@ -16,7 +17,7 @@ export class CharacterAnimation {
     }
 
     private async setAnimation(fileId:string) {
-        let animation = await loadFBX(ANIMATIONS_FOLDER + fileId + ".FBX");
+        let animation = await loadFBX(ANIMATIONS_FOLDER + fileId + ".FBX", CDN_ROOT);
         this.animationAction = this.mixer.clipAction((animation as any).animations[0]);
     }
 

@@ -1,4 +1,4 @@
-import { characterAssetsStorage, CarryItemsCategories, HairCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../../../components/storage/CharacterAssetsStorage";
+import { characterAssetsStorage, CarryItemsCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../../../components/storage/CharacterAssetsStorage";
 
 export const characterConfigOptions = {
     baseFBX: ASSET_LIST.BASE,
@@ -22,8 +22,8 @@ export const characterConfigOptions = {
 
 export const HeadSlotsCategories = {
     hair: [
-        HairCategories.MALE,
-        HairCategories.FEMALE,
+        ASSET_LIST.HAIRMALE,
+        ASSET_LIST.HAIRFEMALE,
     ],
 }
 

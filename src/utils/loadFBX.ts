@@ -1,11 +1,11 @@
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { Group } from 'three';
 
-export function loadFBX(filename:string):any {
+export function loadFBX(filename:string, root = ""):any {
     return new Promise((resolve, reject) => {
         const fbxLoader: FBXLoader = new FBXLoader();
         fbxLoader.load(
-            filename,
+            root + filename,
             (object:Group) => {
                 resolve(object);
             },
