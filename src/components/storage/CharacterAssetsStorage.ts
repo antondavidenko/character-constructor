@@ -27,15 +27,12 @@ export enum COLORS_LIST {
     HAIR = 'hair',
 }
 
-export enum CarryItemsCategories {
-    BACKPACKS = 'backpack',
-    SHIELDS = 'shields',
-    SWORDS = 'swords',
-    RANGED = 'ranged',
-    HEAVY = 'heavy',
-    DAGGERS = 'daggers',
-    CLAWS = 'claws',
+export enum SlotType {
+    HAND = 'hand',
+    BACK = 'back',
 };
+
+type ItemCategory = { id: string, hand: boolean, back: boolean }
 
 class CharacterAssetsStorage {
 
@@ -49,8 +46,19 @@ class CharacterAssetsStorage {
         return this.cdnConfig.colors[colorsId];
     }
 
-    getItems(categoryId: CarryItemsCategories): string[] {
+    getItems(categoryNumber: number): string[] {
+        const categoryId = this.cdnConfig.carryitems.categories[categoryNumber].id;
         return this.cdnConfig.carryitems[categoryId];
+    }
+
+    getItemsCategoriesAllowedToSlotType(slotType: SlotType): number[] {
+        const result = [];
+        this.cdnConfig.carryitems.categories.forEach((category: ItemCategory, id: number) => {
+            if (category[slotType] === true) {
+                result.push(id);
+            }
+        });
+        return result;
     }
 
     private getBodiesCollection(): Map<BodyTypeId, BodyType> {

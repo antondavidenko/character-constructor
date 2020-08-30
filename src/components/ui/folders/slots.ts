@@ -2,13 +2,12 @@ import { FolderContext } from "../UIControlsComponent";
 import { SlotsCategories } from "../model/UIOptions";
 import { updateDatDropdown } from "../utils/updateDatDropdown";
 import { Character } from "../../character/CharacterComponent";
-import { CarryItemsCategories } from "../../../components/storage/model/CarryItems";
 import { characterAssetsStorage } from "../../../components/storage/CharacterAssetsStorage";
 
 let slotsCategories = {
-    rightHandSlot: CarryItemsCategories.SWORDS,
-    leftHandSlot: CarryItemsCategories.SHIELDS,
-    backSlot: CarryItemsCategories.BACKPACKS,
+    rightHandSlot: 2,
+    leftHandSlot: 1,
+    backSlot: 0,
 }
 
 let slotsControlsUI = {
@@ -26,11 +25,9 @@ let slotsItemsId = {
 let character: Character;
 
 export function addSlots(context: FolderContext) {
-
-    slotsItemsId.rightHandSlot = characterAssetsStorage.getItems(CarryItemsCategories.SWORDS)[0],
-    slotsItemsId.leftHandSlot = characterAssetsStorage.getItems(CarryItemsCategories.SHIELDS)[0],
-    slotsItemsId.backSlot = characterAssetsStorage.getItems(CarryItemsCategories.BACKPACKS)[0],
-
+    slotsItemsId.rightHandSlot = characterAssetsStorage.getItems(2)[0],
+    slotsItemsId.leftHandSlot = characterAssetsStorage.getItems(1)[0],
+    slotsItemsId.backSlot = characterAssetsStorage.getItems(0)[0],
 
     character = context.character;
     let slots = context.gui.addFolder('SLOTS');
@@ -49,7 +46,8 @@ export function addSlots(context: FolderContext) {
 }
 
 function setupCarryItemSlotCategory(root, slotId: string) {
-    root.add(slotsCategories, slotId, SlotsCategories[slotId]).onChange((value) => {
+    const list = characterAssetsStorage.getItemsCategoriesAllowedToSlotType(SlotsCategories[slotId]);
+    root.add(slotsCategories, slotId, list).onChange((value) => {
         updateDatDropdown(slotsControlsUI[slotId], characterAssetsStorage.getItems(value));
         setupCarryItemSlotCallback(slotId, characterAssetsStorage.getItems(value)[0]);
     });

@@ -1,4 +1,4 @@
-import { characterAssetsStorage, CarryItemsCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../../../components/storage/CharacterAssetsStorage";
+import { characterAssetsStorage, BodyTypeId, ASSET_LIST, COLORS_LIST, SlotType } from "../../../components/storage/CharacterAssetsStorage";
 
 export const characterConfigOptions = {
     baseFBX: ASSET_LIST.BASE,
@@ -28,25 +28,9 @@ export const HeadSlotsCategories = {
 }
 
 export const SlotsCategories = {
-    rightHandSlot: [
-        CarryItemsCategories.SHIELDS,
-        CarryItemsCategories.SWORDS,
-        CarryItemsCategories.RANGED,
-        CarryItemsCategories.HEAVY,
-        CarryItemsCategories.CLAWS,
-        CarryItemsCategories.DAGGERS,
-    ],
-    leftHandSlot: [
-        CarryItemsCategories.SHIELDS,
-        CarryItemsCategories.SWORDS,
-        CarryItemsCategories.RANGED,
-        CarryItemsCategories.HEAVY,
-        CarryItemsCategories.CLAWS,
-        CarryItemsCategories.DAGGERS,
-    ],
-    backSlot: [
-        CarryItemsCategories.BACKPACKS,
-    ]
+    rightHandSlot: SlotType.HAND,
+    leftHandSlot: SlotType.HAND,
+    backSlot: SlotType.BACK,
 }
 
 export function getAnimationsOptions(): string[] {

@@ -1,5 +1,5 @@
 import { CharacterConfig } from "../../character/model/CharacterConfig";
-import { characterAssetsStorage as storage, CarryItemsCategories, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../CharacterAssetsStorage";
+import { characterAssetsStorage as storage, BodyTypeId, ASSET_LIST, COLORS_LIST } from "../CharacterAssetsStorage";
 
 export function getDefaultCharacterConfig(): CharacterConfig {
     return {
@@ -15,9 +15,9 @@ export function getDefaultCharacterConfig(): CharacterConfig {
         mouthTexture: storage.getList(ASSET_LIST.MOUTH)[0],
         clothesColor1: storage.getColors(COLORS_LIST.CLOTHES)[0],
         clothesColor2: storage.getColors(COLORS_LIST.CLOTHES)[1],
-        leftHandSlot: storage.getItems(CarryItemsCategories.SHIELDS)[0],
-        rightHandSlot: storage.getItems(CarryItemsCategories.SWORDS)[0],
-        backSlot: storage.getItems(CarryItemsCategories.BACKPACKS)[0],
+        leftHandSlot: storage.getItems(1)[0],
+        rightHandSlot: storage.getItems(2)[0],
+        backSlot: storage.getItems(0)[0],
         bodyType: storage.getBodyTypeById(BodyTypeId.HUMAN),
     }
 }
