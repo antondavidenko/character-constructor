@@ -5,7 +5,7 @@ export function getControls(camera, renderer) {
     controls.screenSpacePanning = true;
     controls.target.set(0, 1, 0);
     controls.minDistance = 3;
-    controls.maxDistance = 12;
-    controls.maxPolarAngle = Math.PI/1.9;
+    controls.maxDistance = 40;
+    controls.maxPolarAngle = Math.PI/2;
     return controls;
 }

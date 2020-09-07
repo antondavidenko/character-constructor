@@ -12,26 +12,26 @@ const FACES_TEXTURE_FOLDER = 'head/faces/';
 export async function setupBodyTexture(characterGroup: THREE.Group, config: CharacterConfig) {
     const canvasTesturesList = [];
     canvasTesturesList.push({
-            file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture
+        image: CLOTHES_TEXTURE_FOLDER + config.clothesTexture
     });
     canvasTesturesList.push({
-        file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture + '/color1',
-        colorMask: config.clothesColor1 
+        mask: CLOTHES_TEXTURE_FOLDER + config.clothesTexture + '/color1',
+        color: config.clothesColor1 
     });
     canvasTesturesList.push({
-        file: CLOTHES_TEXTURE_FOLDER + config.clothesTexture + '/color2',
-        colorMask: config.clothesColor2 
+        mask: CLOTHES_TEXTURE_FOLDER + config.clothesTexture + '/color2',
+        color: config.clothesColor2 
     });
     if (config.mouthTexture !== 'none') {
         canvasTesturesList.push({
-            file: FACES_TEXTURE_FOLDER + config.mouthTexture,
+            image: FACES_TEXTURE_FOLDER + config.mouthTexture,
             x: FaceTextureX,
             y: FaceTextureY,
         });
     }
     if (config.eyesTexture !== 'none') {
         canvasTesturesList.push({
-            file: FACES_TEXTURE_FOLDER + config.eyesTexture,
+            image: FACES_TEXTURE_FOLDER + config.eyesTexture,
             x: FaceTextureX,
             y: FaceTextureY,
         });

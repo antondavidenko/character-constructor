@@ -7,10 +7,10 @@ import { getCamera } from './utils/getCamera';
 import { getRender } from './utils/getRender';
 import { getControls } from './utils/getControls';
 import { UIControls } from './components/ui/UIControlsComponent';
-import { Panorama } from './components/PanoramaComponent';
 import { updateFPS } from './utils/counterFPS';
 import { updateShaderMaterial } from './utils/shaderMaterials/shaderMaterialLava';
 import { characterPresetsStorage } from './components/storage/CharacterPresetsStorage';
+import { WorldComponent } from './components/world/WorldComponent';
 
 export class MainScreen {
 
@@ -44,7 +44,7 @@ export class MainScreen {
             this.axesHelper,
             characterPresetsStorage.getDefaultAnimation()
         );
-        new Panorama(this.scene);
+        new WorldComponent(this.scene);
         this.axesHelper.visible = false;
     }
 
