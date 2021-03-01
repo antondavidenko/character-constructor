@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "three": "^0.116.1",
+    "three": "^0.125.0",
     "ts-loader": "4.4.2",
     "typescript": "2.9.2"
   },
