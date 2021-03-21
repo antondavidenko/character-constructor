@@ -10,7 +10,7 @@ export function addGround(scene: THREE.Scene) {
     plane.rotation.x = Math.PI / 2;
     plane.scale.set(GROUND_SCALE, GROUND_SCALE, -GROUND_SCALE);
     setTextureByImagesList(plane, getCanvasTesturesList(), '', '', 4096);
-    const planeMaterial = plane.material as THREE.MeshStandardMaterial;
+    const planeMaterial = plane.material as THREE.MeshPhongMaterial;
     const displacementMap = new THREE.TextureLoader().load("textures/panorama/plane_grass_map.jpg");
     planeMaterial.displacementMap = displacementMap;
     planeMaterial.displacementScale = 0.3;

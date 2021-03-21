@@ -19,7 +19,7 @@ export function setTextureByImage(object:any, filename:string, root = "") {
 export async function setTextureByImagesList(object:any, canvasTesturesList: CanvasTestureItem[], color:string = "", root = "", size = 512) {
     let canvas = document.createElement('canvas');
 
-    document.body.appendChild(canvas);
+    // document.body.appendChild(canvas);
 
     let context = canvas.getContext('2d');
     canvas.width = canvas.height = size;
