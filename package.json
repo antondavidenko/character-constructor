@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@antondavidenko/modular-character-threejs": "^0.0.3",
     "three": "^0.126.1",
     "ts-loader": "4.4.2",
     "typescript": "2.9.2"

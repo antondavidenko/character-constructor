@@ -1,4 +1,4 @@
-import { characterAssetsStorage, BodyTypeId, ASSET_LIST, COLORS_LIST, SlotType } from "../../../components/storage/CharacterAssetsStorage";
+import { characterAssetsStorage, BodyTypeId, ASSET_LIST, COLORS_LIST, SlotType } from "@antondavidenko/modular-character-threejs/dist/components/storage/CharacterAssetsStorage";
 
 export const characterConfigOptions = {
     baseFBX: ASSET_LIST.BASE,

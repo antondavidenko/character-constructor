@@ -2,14 +2,13 @@ import * as THREE from 'three';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import { Illumination } from './utils/Illumination';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { Character } from './components/character/CharacterComponent';
 import { getCamera } from './utils/getCamera';
 import { getRender } from './utils/getRender';
 import { getControls } from './utils/getControls';
 import { UIControls } from './components/ui/UIControlsComponent';
 import { updateFPS } from './utils/counterFPS';
 import { updateShaderMaterial } from './utils/shaderMaterials/shaderMaterialLava';
-import { characterPresetsStorage } from './components/storage/CharacterPresetsStorage';
+import { Character, characterPresetsStorage } from '@antondavidenko/modular-character-threejs';
 import { WorldComponent } from './components/world/WorldComponent';
 
 export class MainScreen {

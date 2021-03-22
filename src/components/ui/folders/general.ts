@@ -1,6 +1,6 @@
 import { FolderContext } from "../UIControlsComponent";
 import { getAnimationsOptions } from "../model/UIOptions";
-import { characterPresetsStorage } from "../../../components/storage/CharacterPresetsStorage";
+import { characterPresetsStorage } from "@antondavidenko/modular-character-threejs/dist/components/storage/CharacterPresetsStorage";
 
 export function addGeneral(context: FolderContext) {
     addRotation(context);

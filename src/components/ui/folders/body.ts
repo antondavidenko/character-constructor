@@ -1,5 +1,5 @@
 import { FolderContext } from "../UIControlsComponent";
-import { BodyTypeId, characterAssetsStorage } from "../../storage/CharacterAssetsStorage"
+import { BodyTypeId, characterAssetsStorage } from "@antondavidenko/modular-character-threejs/dist/components/storage/CharacterAssetsStorage";
 import { characterConfigOptions } from "../model/UIOptions";
 
 let bodyTypeConfig = {

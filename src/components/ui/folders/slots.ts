@@ -1,8 +1,8 @@
 import { FolderContext } from "../UIControlsComponent";
 import { SlotsCategories } from "../model/UIOptions";
 import { updateDatDropdown } from "../utils/updateDatDropdown";
-import { Character } from "../../character/CharacterComponent";
-import { characterAssetsStorage } from "../../../components/storage/CharacterAssetsStorage";
+import { Character } from "@antondavidenko/modular-character-threejs";
+import { characterAssetsStorage } from "@antondavidenko/modular-character-threejs/dist/components/storage/CharacterAssetsStorage";
 
 let slotsCategories = {
     rightHandSlot: 2,

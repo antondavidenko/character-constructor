@@ -1,7 +1,7 @@
 import { FolderContext } from "../UIControlsComponent";
 import { updateDatDropdown } from "../utils/updateDatDropdown";
 import { HeadSlotsCategories } from "../model/UIOptions";
-import { characterAssetsStorage, ASSET_LIST } from "../../../components/storage/CharacterAssetsStorage";
+import { characterAssetsStorage, ASSET_LIST } from "@antondavidenko/modular-character-threejs/dist/components/storage/CharacterAssetsStorage";
 
 let slotsCategories = {
     hair: ASSET_LIST.HAIRMALE,

@@ -1,6 +1,6 @@
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module';
-import { Character } from '../character/CharacterComponent';
-import { CharacterConfig } from '../character/model/CharacterConfig';
+import { Character } from '@antondavidenko/modular-character-threejs';
+import { CharacterConfig } from '@antondavidenko/modular-character-threejs/dist/components/character/model/CharacterConfig';
 import { characterConfigOptions } from './model/UIOptions';
 import { selectToRadios } from './utils/selectToRadios';
 import { addHead } from './folders/head';
@@ -8,7 +8,7 @@ import { addBody } from './folders/body';
 import { addClothes } from './folders/clothes';
 import { addSlots } from './folders/slots';
 import { addGeneral } from './folders/general';
-import { characterAssetsStorage } from '../storage/CharacterAssetsStorage';
+import { characterAssetsStorage } from '@antondavidenko/modular-character-threejs/dist/components/storage/CharacterAssetsStorage';
 
 export class FolderContext {
     gui: GUI;
