@@ -13,7 +13,7 @@ export function addGeneral(context: FolderContext) {
 
 function addRotation(context: FolderContext) {
     context.gui.add(context, 'rotation', -1*Math.PI, 1*Math.PI).onChange((value) => {
-        context.character.setupRotation(value);
+        context.character.rotation.y = value;
     });
 }
 

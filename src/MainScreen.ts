@@ -1,10 +1,7 @@
 import * as THREE from 'three';
 import Stats from 'three/examples/jsm/libs/stats.module';
-import { Illumination } from './utils/Illumination';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { getCamera } from './utils/getCamera';
-import { getRender } from './utils/getRender';
-import { getControls } from './utils/getControls';
+import { getCamera, getRender, getControls, setLight } from './utils/scene/';
 import { UIControls } from './components/ui/UIControlsComponent';
 import { updateFPS } from './utils/counterFPS';
 import { updateShaderMaterial } from './utils/shaderMaterials/shaderMaterialLava';
@@ -37,6 +34,9 @@ export class MainScreen {
             characterPresetsStorage.getDefaultCharacterConfig(),
             characterPresetsStorage.getDefaultAnimation()
         );
+        setTimeout(() => {
+            this.character.rotation.x = 0;
+        }, 1000);
 
         new UIControls(
             this.character,
@@ -49,7 +49,7 @@ export class MainScreen {
 
     private prepareScene() {
         this.scene = new THREE.Scene();
-        new Illumination(this.scene);
+        setLight(this.scene);
         this.camera = getCamera();
         this.renderer = getRender(this.scene, this.camera);
         this.controls = getControls(this.camera, this.renderer);
