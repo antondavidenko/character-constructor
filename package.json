@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@antondavidenko/modular-character-threejs": "^0.0.4",
-    "three": "^0.126.1",
+    "three": "^0.137.0",
     "ts-loader": "4.4.2",
     "typescript": "2.9.2"
   },
